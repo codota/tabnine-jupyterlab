@@ -27,8 +27,8 @@ namespace CommandIDs {
 
   export const selectNotebook = "completer:select-notebook";
 }
-
 /**
+ * 
  * Initialization data for the extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {

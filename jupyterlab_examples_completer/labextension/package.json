@@ -45,7 +45,7 @@
     "prepare": "jlpm run clean && jlpm run build:prod",
     "watch": "run-p watch:src watch:labextension",
     "watch:labextension": "jupyter labextension watch .",
-    "prettier": "prettier -w",
+    "prettier": "prettier -w .",
     "watch:src": "tsc -w"
   },
   "dependencies": {
@@ -89,7 +89,7 @@
       "@jupyterlab/completer-extension:notebooks"
     ],
     "_build": {
-      "load": "static/remoteEntry.a821cbeb7d0c957dfa89.js",
+      "load": "static/remoteEntry.666a78f6edd49a3319ab.js",
       "extension": "./extension",
       "style": "./style"
     }

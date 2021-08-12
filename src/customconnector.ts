@@ -1,36 +1,19 @@
-// Copyright (c) Jupyter Development Team.
-// Distributed under the terms of the Modified BSD License.
-
-// Modified from jupyterlab/packages/completer/src/contextconnector.ts
-
 import { CodeEditor } from "@jupyterlab/codeeditor";
 import { DataConnector } from "@jupyterlab/statedb";
 import { CompletionHandler } from "@jupyterlab/completer";
+import { requestAPI } from './handler';
 
-/**
- * A custom connector for completion handlers.
- */
 export class CustomConnector extends DataConnector<
   CompletionHandler.IReply,
   void,
   CompletionHandler.IRequest
 > {
-  /**
-   * Create a new custom connector for completion requests.
-   *
-   * @param options - The instatiation options for the custom connector.
-   */
+
   constructor(options: CustomConnector.IOptions) {
     super();
     this._editor = options.editor;
   }
-
-  /**
-   * Fetch completion requests.
-   *
-   * @param request - The completion request text and details.
-   * @returns Completion reply
-   */
+    
   fetch(
     request: CompletionHandler.IRequest
   ): Promise<CompletionHandler.IReply> {
@@ -78,9 +61,10 @@ namespace Private {
     const cursor = editor.getCursorPosition();
     const token = editor.getTokenForPosition(cursor);
     const tokenList = [
-      { value: token.value + "Dima", offset: token.offset, type: "hint" },
+      { value: token.value + "Dima", offset: token.offset, type: "magic" },
     ];
 
+    requestAPI("complete", {method: "POST"});
     // Only choose the ones that have a non-empty type field, which are likely to be of interest.
     const completionList = tokenList.filter((t) => t.type).map((t) => t.value);
     // Remove duplicate completions from the list

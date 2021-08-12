@@ -45,7 +45,7 @@
     "prepare": "jlpm run clean && jlpm run build:prod",
     "watch": "run-p watch:src watch:labextension",
     "watch:labextension": "jupyter labextension watch .",
-    "prettier": "prettier -w",
+    "prettier": "prettier -w .",
     "watch:src": "tsc -w"
   },
   "dependencies": {
