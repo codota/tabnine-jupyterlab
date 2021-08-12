@@ -42,7 +42,7 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=["jupyter_server>=1.6,<2"],
+    install_requires=["jupyter_server==1.6.4"],
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",
