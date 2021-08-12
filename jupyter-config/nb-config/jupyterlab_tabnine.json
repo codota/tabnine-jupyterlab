@@ -1,7 +1,7 @@
 {
   "NotebookApp": {
     "nbserver_extensions": {
-      "jupyterlab_examples_completer": true
+      "jupyterlab_tabnine": true
     }
   }
 }

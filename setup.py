@@ -1,6 +1,3 @@
-"""
-jupyterlab_examples_completer setup
-"""
 import json
 import sys
 from pathlib import Path
@@ -10,7 +7,7 @@ import setuptools
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name = "jupyterlab_examples_completer"
+name = "jupyterlab_tabnine"
 
 lab_path = (HERE / name.replace("-", "_") / "labextension")
 
@@ -25,8 +22,8 @@ labext_name = "@jupyterlab-examples/completer"
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
     ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),
-    ("etc/jupyter/jupyter_server_config.d", "jupyter-config/server-config", "jupyterlab_examples_completer.json"),
-    ("etc/jupyter/jupyter_notebook_config.d", "jupyter-config/nb-config", "jupyterlab_examples_completer.json"),
+    ("etc/jupyter/jupyter_server_config.d", "jupyter-config/server-config", "jupyterlab_tabnine.json"),
+    ("etc/jupyter/jupyter_notebook_config.d", "jupyter-config/nb-config", "jupyterlab_tabnine.json"),
 ]
 
 long_description = (HERE / "README.md").read_text()

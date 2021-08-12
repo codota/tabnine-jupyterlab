@@ -19,14 +19,14 @@ def _jupyter_labextension_paths():
 
 
 def _jupyter_server_extension_points():
-    return [{"module": "jupyterlab_examples_completer"}]
+    return [{"module": "jupyterlab_tabnine"}]
 
 
 def _load_jupyter_server_extension(server_app):
     url_path = "tabnine"
     setup_handlers(server_app.web_app, url_path)
     server_app.log.info(
-        f"Registered jlab_ext_example extension at URL path /{url_path}"
+        f"Registered jupyterlab_tabnine extension at URL path /{url_path}"
     )
 
 

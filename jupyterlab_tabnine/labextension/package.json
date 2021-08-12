@@ -1,13 +1,13 @@
 {
   "name": "@tabnine/jupyterlab",
   "version": "0.1.0",
-  "description": "Tabnine AI Auto Completer For Jupyter Lab",
+  "description": "minimal lab example",
   "keywords": [
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/codota/jupyterlab-tabnine",
+  "homepage": "https://github.com/jupyterlab/extension-examples",
   "bugs": {
     "url": "https://github.com/jupyterlab/extension-examples/issues"
   },
@@ -37,7 +37,7 @@
     "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
     "clean": "jlpm run clean:lib",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
-    "clean:labextension": "rimraf jupyterlab_tabnine/labextension",
+    "clean:labextension": "rimraf jupyterlab_examples_completer/labextension",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
@@ -87,7 +87,12 @@
     "outputDir": "jupyterlab_examples_completer/labextension",
     "disabledExtensions": [
       "@jupyterlab/completer-extension:notebooks"
-    ]
+    ],
+    "_build": {
+      "load": "static/remoteEntry.666a78f6edd49a3319ab.js",
+      "extension": "./extension",
+      "style": "./style"
+    }
   },
   "styleModule": "style/index.js"
 }
