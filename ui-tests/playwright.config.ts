@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   timeout: 60000,
@@ -11,7 +11,7 @@ const config: PlaywrightTestConfig = {
     viewport: { width: 1280, height: 720 },
 
     // Artifacts
-    video: 'on',
+    video: "on",
   },
 };
 

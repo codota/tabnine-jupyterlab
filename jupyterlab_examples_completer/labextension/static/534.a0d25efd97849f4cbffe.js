@@ -1,1 +1,224 @@
-"use strict";(self.webpackChunk_tabnine_jupyterlab=self.webpackChunk_tabnine_jupyterlab||[]).push([[534],{150:(e,n,t)=>{t.d(n,{Z:()=>a});var r=t(645),i=t.n(r)()((function(e){return e[1]}));i.push([e.id,"",""]);const a=i},645:e=>{e.exports=function(e){var n=[];return n.toString=function(){return this.map((function(n){var t=e(n);return n[2]?"@media ".concat(n[2]," {").concat(t,"}"):t})).join("")},n.i=function(e,t,r){"string"==typeof e&&(e=[[null,e,""]]);var i={};if(r)for(var a=0;a<this.length;a++){var o=this[a][0];null!=o&&(i[o]=!0)}for(var c=0;c<e.length;c++){var s=[].concat(e[c]);r&&i[s[0]]||(t&&(s[2]?s[2]="".concat(t," and ").concat(s[2]):s[2]=t),n.push(s))}},n}},379:(e,n,t)=>{var r,i=function(){var e={};return function(n){if(void 0===e[n]){var t=document.querySelector(n);if(window.HTMLIFrameElement&&t instanceof window.HTMLIFrameElement)try{t=t.contentDocument.head}catch(e){t=null}e[n]=t}return e[n]}}(),a=[];function o(e){for(var n=-1,t=0;t<a.length;t++)if(a[t].identifier===e){n=t;break}return n}function c(e,n){for(var t={},r=[],i=0;i<e.length;i++){var c=e[i],s=n.base?c[0]+n.base:c[0],u=t[s]||0,l="".concat(s," ").concat(u);t[s]=u+1;var f=o(l),d={css:c[1],media:c[2],sourceMap:c[3]};-1!==f?(a[f].references++,a[f].updater(d)):a.push({identifier:l,updater:v(d,n),references:1}),r.push(l)}return r}function s(e){var n=document.createElement("style"),r=e.attributes||{};if(void 0===r.nonce){var a=t.nc;a&&(r.nonce=a)}if(Object.keys(r).forEach((function(e){n.setAttribute(e,r[e])})),"function"==typeof e.insert)e.insert(n);else{var o=i(e.insert||"head");if(!o)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");o.appendChild(n)}return n}var u,l=(u=[],function(e,n){return u[e]=n,u.filter(Boolean).join("\n")});function f(e,n,t,r){var i=t?"":r.media?"@media ".concat(r.media," {").concat(r.css,"}"):r.css;if(e.styleSheet)e.styleSheet.cssText=l(n,i);else{var a=document.createTextNode(i),o=e.childNodes;o[n]&&e.removeChild(o[n]),o.length?e.insertBefore(a,o[n]):e.appendChild(a)}}function d(e,n,t){var r=t.css,i=t.media,a=t.sourceMap;if(i?e.setAttribute("media",i):e.removeAttribute("media"),a&&"undefined"!=typeof btoa&&(r+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(a))))," */")),e.styleSheet)e.styleSheet.cssText=r;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(r))}}var p=null,h=0;function v(e,n){var t,r,i;if(n.singleton){var a=h++;t=p||(p=s(n)),r=f.bind(null,t,a,!1),i=f.bind(null,t,a,!0)}else t=s(n),r=d.bind(null,t,n),i=function(){!function(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e)}(t)};return r(e),function(n){if(n){if(n.css===e.css&&n.media===e.media&&n.sourceMap===e.sourceMap)return;r(e=n)}else i()}}e.exports=function(e,n){(n=n||{}).singleton||"boolean"==typeof n.singleton||(n.singleton=(void 0===r&&(r=Boolean(window&&document&&document.all&&!window.atob)),r));var t=c(e=e||[],n);return function(e){if(e=e||[],"[object Array]"===Object.prototype.toString.call(e)){for(var r=0;r<t.length;r++){var i=o(t[r]);a[i].references--}for(var s=c(e,n),u=0;u<t.length;u++){var l=o(t[u]);0===a[l].references&&(a[l].updater(),a.splice(l,1))}t=s}}}},534:(e,n,t)=>{t.r(n);var r=t(379),i=t.n(r),a=t(150);i()(a.Z,{insert:"head",singleton:!1}),a.Z.locals}}]);
+"use strict";
+(self.webpackChunk_tabnine_jupyterlab =
+  self.webpackChunk_tabnine_jupyterlab || []).push([
+  [534],
+  {
+    150: (e, n, t) => {
+      t.d(n, { Z: () => a });
+      var r = t(645),
+        i = t.n(r)()(function (e) {
+          return e[1];
+        });
+      i.push([e.id, "", ""]);
+      const a = i;
+    },
+    645: (e) => {
+      e.exports = function (e) {
+        var n = [];
+        return (
+          (n.toString = function () {
+            return this.map(function (n) {
+              var t = e(n);
+              return n[2] ? "@media ".concat(n[2], " {").concat(t, "}") : t;
+            }).join("");
+          }),
+          (n.i = function (e, t, r) {
+            "string" == typeof e && (e = [[null, e, ""]]);
+            var i = {};
+            if (r)
+              for (var a = 0; a < this.length; a++) {
+                var o = this[a][0];
+                null != o && (i[o] = !0);
+              }
+            for (var c = 0; c < e.length; c++) {
+              var s = [].concat(e[c]);
+              (r && i[s[0]]) ||
+                (t &&
+                  (s[2]
+                    ? (s[2] = "".concat(t, " and ").concat(s[2]))
+                    : (s[2] = t)),
+                n.push(s));
+            }
+          }),
+          n
+        );
+      };
+    },
+    379: (e, n, t) => {
+      var r,
+        i = (function () {
+          var e = {};
+          return function (n) {
+            if (void 0 === e[n]) {
+              var t = document.querySelector(n);
+              if (
+                window.HTMLIFrameElement &&
+                t instanceof window.HTMLIFrameElement
+              )
+                try {
+                  t = t.contentDocument.head;
+                } catch (e) {
+                  t = null;
+                }
+              e[n] = t;
+            }
+            return e[n];
+          };
+        })(),
+        a = [];
+      function o(e) {
+        for (var n = -1, t = 0; t < a.length; t++)
+          if (a[t].identifier === e) {
+            n = t;
+            break;
+          }
+        return n;
+      }
+      function c(e, n) {
+        for (var t = {}, r = [], i = 0; i < e.length; i++) {
+          var c = e[i],
+            s = n.base ? c[0] + n.base : c[0],
+            u = t[s] || 0,
+            l = "".concat(s, " ").concat(u);
+          t[s] = u + 1;
+          var f = o(l),
+            d = { css: c[1], media: c[2], sourceMap: c[3] };
+          -1 !== f
+            ? (a[f].references++, a[f].updater(d))
+            : a.push({ identifier: l, updater: v(d, n), references: 1 }),
+            r.push(l);
+        }
+        return r;
+      }
+      function s(e) {
+        var n = document.createElement("style"),
+          r = e.attributes || {};
+        if (void 0 === r.nonce) {
+          var a = t.nc;
+          a && (r.nonce = a);
+        }
+        if (
+          (Object.keys(r).forEach(function (e) {
+            n.setAttribute(e, r[e]);
+          }),
+          "function" == typeof e.insert)
+        )
+          e.insert(n);
+        else {
+          var o = i(e.insert || "head");
+          if (!o)
+            throw new Error(
+              "Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid."
+            );
+          o.appendChild(n);
+        }
+        return n;
+      }
+      var u,
+        l =
+          ((u = []),
+          function (e, n) {
+            return (u[e] = n), u.filter(Boolean).join("\n");
+          });
+      function f(e, n, t, r) {
+        var i = t
+          ? ""
+          : r.media
+          ? "@media ".concat(r.media, " {").concat(r.css, "}")
+          : r.css;
+        if (e.styleSheet) e.styleSheet.cssText = l(n, i);
+        else {
+          var a = document.createTextNode(i),
+            o = e.childNodes;
+          o[n] && e.removeChild(o[n]),
+            o.length ? e.insertBefore(a, o[n]) : e.appendChild(a);
+        }
+      }
+      function d(e, n, t) {
+        var r = t.css,
+          i = t.media,
+          a = t.sourceMap;
+        if (
+          (i ? e.setAttribute("media", i) : e.removeAttribute("media"),
+          a &&
+            "undefined" != typeof btoa &&
+            (r += "\n/*# sourceMappingURL=data:application/json;base64,".concat(
+              btoa(unescape(encodeURIComponent(JSON.stringify(a)))),
+              " */"
+            )),
+          e.styleSheet)
+        )
+          e.styleSheet.cssText = r;
+        else {
+          for (; e.firstChild; ) e.removeChild(e.firstChild);
+          e.appendChild(document.createTextNode(r));
+        }
+      }
+      var p = null,
+        h = 0;
+      function v(e, n) {
+        var t, r, i;
+        if (n.singleton) {
+          var a = h++;
+          (t = p || (p = s(n))),
+            (r = f.bind(null, t, a, !1)),
+            (i = f.bind(null, t, a, !0));
+        } else
+          (t = s(n)),
+            (r = d.bind(null, t, n)),
+            (i = function () {
+              !(function (e) {
+                if (null === e.parentNode) return !1;
+                e.parentNode.removeChild(e);
+              })(t);
+            });
+        return (
+          r(e),
+          function (n) {
+            if (n) {
+              if (
+                n.css === e.css &&
+                n.media === e.media &&
+                n.sourceMap === e.sourceMap
+              )
+                return;
+              r((e = n));
+            } else i();
+          }
+        );
+      }
+      e.exports = function (e, n) {
+        (n = n || {}).singleton ||
+          "boolean" == typeof n.singleton ||
+          (n.singleton =
+            (void 0 === r &&
+              (r = Boolean(window && document && document.all && !window.atob)),
+            r));
+        var t = c((e = e || []), n);
+        return function (e) {
+          if (
+            ((e = e || []),
+            "[object Array]" === Object.prototype.toString.call(e))
+          ) {
+            for (var r = 0; r < t.length; r++) {
+              var i = o(t[r]);
+              a[i].references--;
+            }
+            for (var s = c(e, n), u = 0; u < t.length; u++) {
+              var l = o(t[u]);
+              0 === a[l].references && (a[l].updater(), a.splice(l, 1));
+            }
+            t = s;
+          }
+        };
+      };
+    },
+    534: (e, n, t) => {
+      t.r(n);
+      var r = t(379),
+        i = t.n(r),
+        a = t(150);
+      i()(a.Z, { insert: "head", singleton: !1 }), a.Z.locals;
+    },
+  },
+]);

@@ -146,13 +146,13 @@ Note that the extension commands you're overriding are unified into one namespac
 // src/index.ts#L21-L29
 
 namespace CommandIDs {
-  export const invoke = 'completer:invoke';
+  export const invoke = "completer:invoke";
 
-  export const invokeNotebook = 'completer:invoke-notebook';
+  export const invokeNotebook = "completer:invoke-notebook";
 
-  export const select = 'completer:select';
+  export const select = "completer:select";
 
-  export const selectNotebook = 'completer:select-notebook';
+  export const selectNotebook = "completer:select-notebook";
 }
 ```
 
@@ -175,9 +175,9 @@ and two from this extension:
 ```ts
 // src/index.ts#L14-L16
 
-import { CompletionConnector } from './connector';
+import { CompletionConnector } from "./connector";
 
-import { CustomConnector } from './customconnector';
+import { CustomConnector } from "./customconnector";
 ```
 
 Just like the notebooks plugin, when you update the handler for a notebook call `updateConnector`:

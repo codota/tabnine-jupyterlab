@@ -3,11 +3,10 @@
 
 // Modified from jupyterlab/packages/completer/src/contextconnector.ts
 
-import { CodeEditor } from '@jupyterlab/codeeditor';
-import { DataConnector } from '@jupyterlab/statedb';
-import { CompletionHandler } from '@jupyterlab/completer';
+import { CodeEditor } from "@jupyterlab/codeeditor";
+import { DataConnector } from "@jupyterlab/statedb";
+import { CompletionHandler } from "@jupyterlab/completer";
 
-// is this working?
 /**
  * A custom connector for completion handlers.
  */
@@ -36,7 +35,7 @@ export class CustomConnector extends DataConnector<
     request: CompletionHandler.IRequest
   ): Promise<CompletionHandler.IReply> {
     if (!this._editor) {
-      return Promise.reject('No editor');
+      return Promise.reject("No editor");
     }
     return new Promise<CompletionHandler.IReply>((resolve) => {
       resolve(Private.completionHint(this._editor));
@@ -78,10 +77,8 @@ namespace Private {
     // Find the token at the cursor
     const cursor = editor.getCursorPosition();
     const token = editor.getTokenForPosition(cursor);
-  is this  
-      debugger;
     const tokenList = [
-      { value: token.value + 'Dima', offset: token.offset, type: 'hint' },
+      { value: token.value + "Dima", offset: token.offset, type: "hint" },
     ];
 
     // Only choose the ones that have a non-empty type field, which are likely to be of interest.

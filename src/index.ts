@@ -1,38 +1,38 @@
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin,
-} from '@jupyterlab/application';
+} from "@jupyterlab/application";
 
 import {
   ContextConnector,
   ICompletionManager,
   KernelConnector,
-} from '@jupyterlab/completer';
+} from "@jupyterlab/completer";
 
-import { INotebookTracker, NotebookPanel } from '@jupyterlab/notebook';
+import { INotebookTracker, NotebookPanel } from "@jupyterlab/notebook";
 
-import { CompletionConnector } from './connector';
+import { CompletionConnector } from "./connector";
 
-import { CustomConnector } from './customconnector';
+import { CustomConnector } from "./customconnector";
 
 /**
  * The command IDs used by the console plugin.
  */
 namespace CommandIDs {
-  export const invoke = 'completer:invoke';
+  export const invoke = "completer:invoke";
 
-  export const invokeNotebook = 'completer:invoke-notebook';
+  export const invokeNotebook = "completer:invoke-notebook";
 
-  export const select = 'completer:select';
+  export const select = "completer:select";
 
-  export const selectNotebook = 'completer:select-notebook';
+  export const selectNotebook = "completer:select-notebook";
 }
 
 /**
  * Initialization data for the extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: 'completer',
+  id: "completer",
   autoStart: true,
   requires: [ICompletionManager, INotebookTracker],
   activate: async (
@@ -40,7 +40,7 @@ const extension: JupyterFrontEndPlugin<void> = {
     completionManager: ICompletionManager,
     notebooks: INotebookTracker
   ) => {
-    console.log('JupyterLab custom completer extension is activated!');
+    console.log("JupyterLab custom completer extension is activated!");
 
     // Modelled after completer-extension's notebooks plugin
     notebooks.widgetAdded.connect(
@@ -81,7 +81,7 @@ const extension: JupyterFrontEndPlugin<void> = {
     app.commands.addCommand(CommandIDs.invokeNotebook, {
       execute: () => {
         const panel = notebooks.currentWidget;
-        if (panel && panel.content.activeCell?.model.type === 'code') {
+        if (panel && panel.content.activeCell?.model.type === "code") {
           return app.commands.execute(CommandIDs.invoke, { id: panel.id });
         }
       },
@@ -101,8 +101,8 @@ const extension: JupyterFrontEndPlugin<void> = {
     // Set enter key for notebook completer select command.
     app.commands.addKeyBinding({
       command: CommandIDs.selectNotebook,
-      keys: ['Enter'],
-      selector: '.jp-Notebook .jp-mod-completer-active',
+      keys: ["Enter"],
+      selector: ".jp-Notebook .jp-mod-completer-active",
     });
   },
 };

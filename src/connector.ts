@@ -3,8 +3,8 @@
 
 // Modified from jupyterlab/packages/completer/src/connector.ts
 
-import { DataConnector } from '@jupyterlab/statedb';
-import { CompletionHandler } from '@jupyterlab/completer';
+import { DataConnector } from "@jupyterlab/statedb";
+import { CompletionHandler } from "@jupyterlab/completer";
 
 /**
  * A multi-connector connector for completion handlers.
