@@ -128,8 +128,8 @@
           },
           "filename": "remoteEntry.[contenthash].js",
           "exposes": {
-            "./index": "/home/amir/Workspace/tabnine-jupyterlab/lib/index.js",
-            "./extension": "/home/amir/Workspace/tabnine-jupyterlab/lib/index.js",
+            "./index": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js",
+            "./extension": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js",
             "./style": "/home/amir/Workspace/tabnine-jupyterlab/style/index.js"
           },
           "shared": {
@@ -590,7 +590,7 @@
             "@tabnine/jupyterlab": {
               "version": "0.1.0",
               "singleton": true,
-              "import": "/home/amir/Workspace/tabnine-jupyterlab/lib/index.js"
+              "import": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js"
             }
           }
         }
@@ -602,7 +602,7 @@
     "entry": {},
     "output": {
       "filename": "[name].[contenthash].js",
-      "path": "/home/amir/Workspace/tabnine-jupyterlab/jupyterlab_examples_completer/labextension/static",
+      "path": "/home/amir/Workspace/tabnine-jupyterlab/jupyterlab_tabnine/labextension/static",
       "publicPath": "auto"
     }
   }

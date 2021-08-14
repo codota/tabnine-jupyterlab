@@ -1,8 +1,7 @@
-
 import json
 import os.path as osp
 
-from .handlers import setup_handlers
+from .handler import setup_handler
 from ._version import __version__
 
 HERE = osp.abspath(osp.dirname(__file__))
@@ -23,10 +22,9 @@ def _jupyter_server_extension_points():
 
 
 def _load_jupyter_server_extension(server_app):
-    url_path = "tabnine"
-    setup_handlers(server_app.web_app, url_path)
+    setup_handler(server_app.web_app)
     server_app.log.info(
-        f"Registered jupyterlab_tabnine extension at URL path /{url_path}"
+        "Registered jupyterlab_tabnine extension at URL path"
     )
 
 

@@ -1,7 +1,7 @@
 import { CodeEditor } from "@jupyterlab/codeeditor";
 import { DataConnector } from "@jupyterlab/statedb";
 import { CompletionHandler } from "@jupyterlab/completer";
-import { requestAPI } from './handler';
+import postAutocomplete  from './binary/postAutocomplete';
 
 export class CustomConnector extends DataConnector<
   CompletionHandler.IReply,
@@ -64,7 +64,7 @@ namespace Private {
       { value: token.value + "Dima", offset: token.offset, type: "magic" },
     ];
 
-    requestAPI("complete", {method: "POST"});
+    postAutocomplete({before: "A", "after": "B", max_num_results: 5, filename: "bilu", region_includes_end: true, region_includes_beginning: true });
     // Only choose the ones that have a non-empty type field, which are likely to be of interest.
     const completionList = tokenList.filter((t) => t.type).map((t) => t.value);
     // Remove duplicate completions from the list

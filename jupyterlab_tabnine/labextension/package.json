@@ -1,13 +1,13 @@
 {
   "name": "@tabnine/jupyterlab",
   "version": "0.1.0",
-  "description": "minimal lab example",
+  "description": "Tabnine AI Auto Completer For Jupyter Lab",
   "keywords": [
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/jupyterlab/extension-examples",
+  "homepage": "https://github.com/codota/jupyterlab-tabnine",
   "bugs": {
     "url": "https://github.com/jupyterlab/extension-examples/issues"
   },
@@ -17,12 +17,12 @@
     "email": ""
   },
   "files": [
-    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "out/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
     "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}",
     "style/index.js"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "out/src/index.js",
+  "types": "out/src/index.d.ts",
   "style": "style/index.css",
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
     "clean": "jlpm run clean:lib",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
-    "clean:labextension": "rimraf jupyterlab_examples_completer/labextension",
+    "clean:labextension": "rimraf jupyterlab_tabnine/labextension",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
@@ -82,14 +82,24 @@
     "style/index.js"
   ],
   "jupyterlab": {
+    "discovery": {
+      "server": {
+        "managers": [
+          "pip"
+        ],
+        "base": {
+          "name": "jupyterlab_tabnine"
+        }
+      }
+    },
     "extension": true,
     "schemaDir": "schema",
-    "outputDir": "jupyterlab_examples_completer/labextension",
+    "outputDir": "jupyterlab_tabnine/labextension",
     "disabledExtensions": [
       "@jupyterlab/completer-extension:notebooks"
     ],
     "_build": {
-      "load": "static/remoteEntry.666a78f6edd49a3319ab.js",
+      "load": "static/remoteEntry.bac0ce5bf6ddd82f8e0b.js",
       "extension": "./extension",
       "style": "./style"
     }

@@ -17,7 +17,7 @@ ensured_targets = [
     str(lab_path / "static/style.js")
 ]
 
-labext_name = "@jupyterlab-examples/completer"
+labext_name = "@tabnine/jupyterlab"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
