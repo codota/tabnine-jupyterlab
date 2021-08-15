@@ -11,9 +11,9 @@ import {
 
 import { INotebookTracker, NotebookPanel } from "@jupyterlab/notebook";
 
-import { CompletionConnector } from "./connector";
+import CompletionConnector from "./CompletionConnector";
 
-import { CustomConnector } from "./customconnector";
+import TabnineConnector from "./TabnineConnector";
 
 /**
  * The command IDs used by the console plugin.
@@ -28,7 +28,7 @@ namespace CommandIDs {
   export const selectNotebook = "completer:select-notebook";
 }
 /**
- * 
+ *
  * Initialization data for the extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
@@ -40,9 +40,8 @@ const extension: JupyterFrontEndPlugin<void> = {
     completionManager: ICompletionManager,
     notebooks: INotebookTracker
   ) => {
-    console.log("JupyterLab custom completer extension is activated!");
+    console.log("Tabnine extension is activated!");
 
-    // Modelled after completer-extension's notebooks plugin
     notebooks.widgetAdded.connect(
       (sender: INotebookTracker, panel: NotebookPanel) => {
         let editor = panel.content.activeCell?.editor ?? null;
@@ -63,7 +62,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 
           const kernel = new KernelConnector(options);
           const context = new ContextConnector(options);
-          const custom = new CustomConnector(options);
+          const custom = new TabnineConnector(options);
           handler.connector = new CompletionConnector([
             kernel,
             context,

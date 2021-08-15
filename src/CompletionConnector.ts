@@ -1,7 +1,7 @@
 import { DataConnector } from "@jupyterlab/statedb";
 import { CompletionHandler } from "@jupyterlab/completer";
 
-export class CompletionConnector extends DataConnector<
+export default class CompletionConnector extends DataConnector<
   CompletionHandler.IReply,
   void,
   CompletionHandler.IRequest
@@ -26,7 +26,7 @@ export class CompletionConnector extends DataConnector<
       const definedReplies = replies.filter(
         (reply): reply is CompletionHandler.IReply => !!reply
       );
-      return Private.mergeReplies(definedReplies);
+      return mergeReplies(definedReplies);
     });
   }
 
@@ -37,23 +37,21 @@ export class CompletionConnector extends DataConnector<
   >[];
 }
 
-namespace Private {
-  export function mergeReplies(
-    replies: Array<CompletionHandler.IReply>
-  ): CompletionHandler.IReply {
-    const repliesWithMatches = replies.filter((rep) => rep.matches.length > 0);
-    if (repliesWithMatches.length === 0) {
-      return replies[0];
-    }
-    if (repliesWithMatches.length === 1) {
-      return repliesWithMatches[0];
-    }
-
-    const matches: Set<string> = new Set();
-    repliesWithMatches.forEach((reply) => {
-      reply.matches.forEach((match) => matches.add(match));
-    });
-
-    return { ...repliesWithMatches[0], matches: [...matches] };
+function mergeReplies(
+  replies: Array<CompletionHandler.IReply>
+): CompletionHandler.IReply {
+  const repliesWithMatches = replies.filter((rep) => rep.matches.length > 0);
+  if (repliesWithMatches.length === 0) {
+    return replies[0];
   }
+  if (repliesWithMatches.length === 1) {
+    return repliesWithMatches[0];
+  }
+
+  const matches: Set<string> = new Set();
+  repliesWithMatches.forEach((reply) => {
+    reply.matches.forEach((match) => matches.add(match));
+  });
+
+  return { ...repliesWithMatches[0], matches: [...matches] };
 }

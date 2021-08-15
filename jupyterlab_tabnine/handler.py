@@ -5,16 +5,19 @@ from notebook.base.handlers import APIHandler
 from notebook.utils import url_path_join
 
 import tornado
-from tornado.web import StaticFileHandler
+from .tabnine import Tabnine
 
 
 class TabnineHandler(APIHandler):
+
+    def initialize(self, tabnine):
+       self.tabnine = tabnine
+
     @tornado.web.authenticated
     def post(self):
-        input_data = self.get_json_body()
-        print(input_data)
-        data = {"greetings": "Hello"}
-        self.finish(json.dumps(data))
+        request = self.request.body.decode('utf-8')
+        response = self.tabnine.request(request)
+        self.finish(json.dumps(response))
 
 
 def setup_handler(web_app):
@@ -22,5 +25,6 @@ def setup_handler(web_app):
     base_url = web_app.settings["base_url"]
 
     route_pattern = url_path_join(base_url, "tabnine", "request")
-    handlers = [(route_pattern, TabnineHandler)]
+    tabnine = Tabnine()
+    handlers = [(route_pattern, TabnineHandler, {"tabnine": tabnine})]
     web_app.add_handlers(host_pattern, handlers)

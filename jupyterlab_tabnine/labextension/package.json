@@ -99,7 +99,7 @@
       "@jupyterlab/completer-extension:notebooks"
     ],
     "_build": {
-      "load": "static/remoteEntry.bac0ce5bf6ddd82f8e0b.js",
+      "load": "static/remoteEntry.a9d67f7eac7869101511.js",
       "extension": "./extension",
       "style": "./style"
     }

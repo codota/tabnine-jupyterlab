@@ -13,7 +13,7 @@ export default async function postBinary<TRequest, TResponse>(
   try {
     response = await ServerConnection.makeRequest(
       requestUrl,
-      { method: "POST", body: JSON.stringify({ request }) },
+      { method: "POST", body: JSON.stringify({ request, version: "3.2.71" }) },
       settings
     );
   } catch (error) {

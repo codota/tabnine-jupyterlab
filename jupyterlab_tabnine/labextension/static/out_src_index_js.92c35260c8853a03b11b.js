@@ -1,6 +1,115 @@
 "use strict";
 (self["webpackChunk_tabnine_jupyterlab"] = self["webpackChunk_tabnine_jupyterlab"] || []).push([["out_src_index_js"],{
 
+/***/ "./out/src/CompletionConnector.js":
+/*!****************************************!*\
+  !*** ./out/src/CompletionConnector.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CompletionConnector)
+/* harmony export */ });
+/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jupyterlab/statedb */ "webpack/sharing/consume/default/@jupyterlab/statedb");
+/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__);
+
+class CompletionConnector extends _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__.DataConnector {
+    constructor(connectors) {
+        super();
+        this._connectors = connectors;
+    }
+    fetch(request) {
+        return Promise.all(this._connectors.map((connector) => connector.fetch(request))).then((replies) => {
+            const definedReplies = replies.filter((reply) => !!reply);
+            return mergeReplies(definedReplies);
+        });
+    }
+}
+function mergeReplies(replies) {
+    const repliesWithMatches = replies.filter((rep) => rep.matches.length > 0);
+    if (repliesWithMatches.length === 0) {
+        return replies[0];
+    }
+    if (repliesWithMatches.length === 1) {
+        return repliesWithMatches[0];
+    }
+    const matches = new Set();
+    repliesWithMatches.forEach((reply) => {
+        reply.matches.forEach((match) => matches.add(match));
+    });
+    return Object.assign(Object.assign({}, repliesWithMatches[0]), { matches: [...matches] });
+}
+
+
+/***/ }),
+
+/***/ "./out/src/TabnineConnector.js":
+/*!*************************************!*\
+  !*** ./out/src/TabnineConnector.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TabnineConnector),
+/* harmony export */   "autoComplete": () => (/* binding */ autoComplete)
+/* harmony export */ });
+/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jupyterlab/statedb */ "webpack/sharing/consume/default/@jupyterlab/statedb");
+/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _binary_postAutocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./binary/postAutocomplete */ "./out/src/binary/postAutocomplete.js");
+/* harmony import */ var _consts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./consts */ "./out/src/consts.js");
+
+
+
+class TabnineConnector extends _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__.DataConnector {
+    constructor(options) {
+        super();
+        this._editor = options.editor;
+    }
+    fetch(request) {
+        if (!this._editor) {
+            return Promise.reject("No editor");
+        }
+        return autoComplete(this._editor);
+    }
+}
+async function autoComplete(editor) {
+    // Find the token at the cursor
+    const position = editor.getCursorPosition();
+    const currentOffset = editor.getOffsetAt(position);
+    const beforeStartOffset = Math.max(0, currentOffset - _consts__WEBPACK_IMPORTED_MODULE_1__.CHAR_LIMIT);
+    const afterEndOffset = currentOffset + _consts__WEBPACK_IMPORTED_MODULE_1__.CHAR_LIMIT;
+    const before = editor
+        .getTokens()
+        .filter(({ offset }) => beforeStartOffset <= offset)
+        .map(({ value }) => value)
+        .join("");
+    const after = editor
+        .getTokens()
+        .filter(({ offset }) => offset > currentOffset && offset < afterEndOffset)
+        .map(({ value }) => value)
+        .join("");
+    const response = await (0,_binary_postAutocomplete__WEBPACK_IMPORTED_MODULE_2__.default)({
+        before,
+        after,
+        max_num_results: 5,
+        filename: "bilu",
+        region_includes_end: true,
+        region_includes_beginning: true,
+    });
+    debugger;
+    return {
+        start: currentOffset,
+        end: currentOffset + 10,
+        matches: response.results.map(({ new_prefix }) => new_prefix),
+        metadata: {},
+    };
+}
+
+
+/***/ }),
+
 /***/ "./out/src/binary/postAutocomplete.js":
 /*!********************************************!*\
   !*** ./out/src/binary/postAutocomplete.js ***!
@@ -43,7 +152,7 @@ const requestUrl = _jupyterlab_coreutils__WEBPACK_IMPORTED_MODULE_0__.URLExt.joi
 async function postBinary(request) {
     let response;
     try {
-        response = await _jupyterlab_services__WEBPACK_IMPORTED_MODULE_1__.ServerConnection.makeRequest(requestUrl, { method: "POST", body: JSON.stringify({ request }) }, settings);
+        response = await _jupyterlab_services__WEBPACK_IMPORTED_MODULE_1__.ServerConnection.makeRequest(requestUrl, { method: "POST", body: JSON.stringify({ request, version: "3.2.71" }) }, settings);
     }
     catch (error) {
         throw new _jupyterlab_services__WEBPACK_IMPORTED_MODULE_1__.ServerConnection.NetworkError(error);
@@ -58,115 +167,19 @@ async function postBinary(request) {
 
 /***/ }),
 
-/***/ "./out/src/connector.js":
-/*!******************************!*\
-  !*** ./out/src/connector.js ***!
-  \******************************/
+/***/ "./out/src/consts.js":
+/*!***************************!*\
+  !*** ./out/src/consts.js ***!
+  \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CompletionConnector": () => (/* binding */ CompletionConnector)
+/* harmony export */   "CHAR_LIMIT": () => (/* binding */ CHAR_LIMIT),
+/* harmony export */   "API_VERSION": () => (/* binding */ API_VERSION)
 /* harmony export */ });
-/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jupyterlab/statedb */ "webpack/sharing/consume/default/@jupyterlab/statedb");
-/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__);
-
-class CompletionConnector extends _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__.DataConnector {
-    constructor(connectors) {
-        super();
-        this._connectors = connectors;
-    }
-    fetch(request) {
-        return Promise.all(this._connectors.map((connector) => connector.fetch(request))).then((replies) => {
-            const definedReplies = replies.filter((reply) => !!reply);
-            return Private.mergeReplies(definedReplies);
-        });
-    }
-}
-var Private;
-(function (Private) {
-    function mergeReplies(replies) {
-        const repliesWithMatches = replies.filter((rep) => rep.matches.length > 0);
-        if (repliesWithMatches.length === 0) {
-            return replies[0];
-        }
-        if (repliesWithMatches.length === 1) {
-            return repliesWithMatches[0];
-        }
-        const matches = new Set();
-        repliesWithMatches.forEach((reply) => {
-            reply.matches.forEach((match) => matches.add(match));
-        });
-        return Object.assign(Object.assign({}, repliesWithMatches[0]), { matches: [...matches] });
-    }
-    Private.mergeReplies = mergeReplies;
-})(Private || (Private = {}));
-
-
-/***/ }),
-
-/***/ "./out/src/customconnector.js":
-/*!************************************!*\
-  !*** ./out/src/customconnector.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CustomConnector": () => (/* binding */ CustomConnector)
-/* harmony export */ });
-/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @jupyterlab/statedb */ "webpack/sharing/consume/default/@jupyterlab/statedb");
-/* harmony import */ var _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _binary_postAutocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./binary/postAutocomplete */ "./out/src/binary/postAutocomplete.js");
-
-
-class CustomConnector extends _jupyterlab_statedb__WEBPACK_IMPORTED_MODULE_0__.DataConnector {
-    constructor(options) {
-        super();
-        this._editor = options.editor;
-    }
-    fetch(request) {
-        if (!this._editor) {
-            return Promise.reject("No editor");
-        }
-        return new Promise((resolve) => {
-            resolve(Private.completionHint(this._editor));
-        });
-    }
-}
-// i
-/**
- * A namespace for Private functionality.
- */
-var Private;
-(function (Private) {
-    /**
-     * Get a list of mocked completion hints.
-     *
-     * @param editor Editor
-     * @returns Completion reply
-     */
-    function completionHint(editor) {
-        // Find the token at the cursor
-        const cursor = editor.getCursorPosition();
-        const token = editor.getTokenForPosition(cursor);
-        const tokenList = [
-            { value: token.value + "Dima", offset: token.offset, type: "magic" },
-        ];
-        (0,_binary_postAutocomplete__WEBPACK_IMPORTED_MODULE_1__.default)({ before: "A", "after": "B", max_num_results: 5, filename: "bilu", region_includes_end: true, region_includes_beginning: true });
-        // Only choose the ones that have a non-empty type field, which are likely to be of interest.
-        const completionList = tokenList.filter((t) => t.type).map((t) => t.value);
-        // Remove duplicate completions from the list
-        const matches = Array.from(new Set(completionList));
-        return {
-            start: token.offset,
-            end: token.offset + token.value.length,
-            matches,
-            metadata: {},
-        };
-    }
-    Private.completionHint = completionHint;
-})(Private || (Private = {}));
+const CHAR_LIMIT = 10000;
+const API_VERSION = "3.5.34";
 
 
 /***/ }),
@@ -185,8 +198,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jupyterlab_completer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_completer__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _jupyterlab_notebook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @jupyterlab/notebook */ "webpack/sharing/consume/default/@jupyterlab/notebook");
 /* harmony import */ var _jupyterlab_notebook__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_jupyterlab_notebook__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _connector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./connector */ "./out/src/connector.js");
-/* harmony import */ var _customconnector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customconnector */ "./out/src/customconnector.js");
+/* harmony import */ var _CompletionConnector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CompletionConnector */ "./out/src/CompletionConnector.js");
+/* harmony import */ var _TabnineConnector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TabnineConnector */ "./out/src/TabnineConnector.js");
 
 
 
@@ -210,14 +223,13 @@ const extension = {
     autoStart: true,
     requires: [_jupyterlab_completer__WEBPACK_IMPORTED_MODULE_0__.ICompletionManager, _jupyterlab_notebook__WEBPACK_IMPORTED_MODULE_1__.INotebookTracker],
     activate: async (app, completionManager, notebooks) => {
-        console.log("JupyterLab custom completer extension is activated!");
-        // Modelled after completer-extension's notebooks plugin
+        console.log("Tabnine extension is activated!");
         notebooks.widgetAdded.connect((sender, panel) => {
             var _a, _b;
             let editor = (_b = (_a = panel.content.activeCell) === null || _a === void 0 ? void 0 : _a.editor) !== null && _b !== void 0 ? _b : null;
             const session = panel.sessionContext.session;
             const options = { session, editor };
-            const connector = new _connector__WEBPACK_IMPORTED_MODULE_2__.CompletionConnector([]);
+            const connector = new _CompletionConnector__WEBPACK_IMPORTED_MODULE_2__.default([]);
             const handler = completionManager.register({
                 connector,
                 editor,
@@ -231,8 +243,8 @@ const extension = {
                 handler.editor = editor;
                 const kernel = new _jupyterlab_completer__WEBPACK_IMPORTED_MODULE_0__.KernelConnector(options);
                 const context = new _jupyterlab_completer__WEBPACK_IMPORTED_MODULE_0__.ContextConnector(options);
-                const custom = new _customconnector__WEBPACK_IMPORTED_MODULE_3__.CustomConnector(options);
-                handler.connector = new _connector__WEBPACK_IMPORTED_MODULE_2__.CompletionConnector([
+                const custom = new _TabnineConnector__WEBPACK_IMPORTED_MODULE_3__.default(options);
+                handler.connector = new _CompletionConnector__WEBPACK_IMPORTED_MODULE_2__.default([
                     kernel,
                     context,
                     custom,
@@ -275,4 +287,4 @@ const extension = {
 /***/ })
 
 }]);
-//# sourceMappingURL=out_src_index_js.8356e706a1aca348ad5d.js.map
+//# sourceMappingURL=out_src_index_js.92c35260c8853a03b11b.js.map
