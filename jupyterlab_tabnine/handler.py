@@ -24,7 +24,7 @@ def setup_handler(web_app):
     host_pattern = ".*$"
     base_url = web_app.settings["base_url"]
 
-    route_pattern = url_path_join(base_url, "tabnine", "request")
+    route_pattern = url_path_join(base_url, "tabnine")
     tabnine = Tabnine()
     handlers = [(route_pattern, TabnineHandler, {"tabnine": tabnine})]
     web_app.add_handlers(host_pattern, handlers)

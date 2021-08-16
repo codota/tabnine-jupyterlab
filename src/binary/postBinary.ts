@@ -4,7 +4,7 @@ import { ServerConnection } from "@jupyterlab/services";
 
 const settings = ServerConnection.makeSettings();
 
-const requestUrl = URLExt.join(settings.baseUrl, "tabnine", "request");
+const requestUrl = URLExt.join(settings.baseUrl, "tabnine");
 
 export default async function postBinary<TRequest, TResponse>(
   request: TRequest

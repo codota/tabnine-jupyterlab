@@ -3,21 +3,16 @@ import {
   JupyterFrontEndPlugin,
 } from "@jupyterlab/application";
 
-import {
-  ContextConnector,
-  ICompletionManager,
-  KernelConnector,
-} from "@jupyterlab/completer";
+import { ICompletionManager, CompletionConnector } from "@jupyterlab/completer";
 
 import { INotebookTracker, NotebookPanel } from "@jupyterlab/notebook";
 
-import CompletionConnector from "./CompletionConnector";
+import MergeConnector from "./MergeConnector";
 
 import TabnineConnector from "./TabnineConnector";
 
-/**
- * The command IDs used by the console plugin.
- */
+import { COMPLETION_CHARS } from "./consts";
+
 namespace CommandIDs {
   export const invoke = "completer:invoke";
 
@@ -27,12 +22,9 @@ namespace CommandIDs {
 
   export const selectNotebook = "completer:select-notebook";
 }
-/**
- *
- * Initialization data for the extension.
- */
+
 const extension: JupyterFrontEndPlugin<void> = {
-  id: "completer",
+  id: "tabnine",
   autoStart: true,
   requires: [ICompletionManager, INotebookTracker],
   activate: async (
@@ -44,33 +36,38 @@ const extension: JupyterFrontEndPlugin<void> = {
 
     notebooks.widgetAdded.connect(
       (sender: INotebookTracker, panel: NotebookPanel) => {
+
         let editor = panel.content.activeCell?.editor ?? null;
         const session = panel.sessionContext.session;
+
         const options = { session, editor };
-        const connector = new CompletionConnector([]);
+
+        const connector = new CompletionConnector({ session, editor });
+
         const handler = completionManager.register({
           connector,
           editor,
           parent: panel,
         });
 
-        const updateConnector = () => {
+        function updateConnector() {
           editor = panel.content.activeCell?.editor ?? null;
           options.session = panel.sessionContext.session;
           options.editor = editor;
           handler.editor = editor;
 
-          const kernel = new KernelConnector(options);
-          const context = new ContextConnector(options);
-          const custom = new TabnineConnector(options);
-          handler.connector = new CompletionConnector([
-            kernel,
-            context,
-            custom,
-          ]);
-        };
+          panel.content.activeCell?.editor.addKeydownHandler((editor, event) => {
+            if (COMPLETION_CHARS.includes(event.key))
+              app.commands.execute(CommandIDs.invoke, { id: panel.id });
+            return false;
+          });
 
-        // Update the handler whenever the prompt or session changes
+          const tabnine = new TabnineConnector(options);
+          const connector = new CompletionConnector(options);
+
+          handler.connector = new MergeConnector(tabnine, connector);
+        }
+
         panel.content.activeCellChanged.connect(updateConnector);
         panel.sessionContext.sessionChanged.connect(updateConnector);
       }

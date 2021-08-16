@@ -1,18 +1,30 @@
 import { CodeEditor } from "@jupyterlab/codeeditor";
-import { DataConnector } from "@jupyterlab/statedb";
 import { CompletionHandler } from "@jupyterlab/completer";
-import postAutocomplete from "./binary/postAutocomplete";
 import { CHAR_LIMIT } from "./consts";
+import postAutocomplete from "./binary/postAutocomplete";
+import { DataConnector } from "@jupyterlab/statedb";
+import icon from "./icon";
+import { MAX_RESULTS } from "./consts";
 
 type IOptions = {
   editor: CodeEditor.IEditor | null;
 };
 
-export default class TabnineConnector extends DataConnector<
-  CompletionHandler.IReply,
-  void,
-  CompletionHandler.IRequest
-> {
+type IAutoCompleteRequestOptions = {
+  editor: CodeEditor.IEditor;
+  text: string;
+};
+
+export default class TabnineConnector
+  extends DataConnector<
+    CompletionHandler.ICompletionItemsReply,
+    void,
+    CompletionHandler.IRequest
+  >
+  implements CompletionHandler.ICompletionItemsConnector
+{
+  responseType = "ICompletionItemsReply" as const; // TODO what's this?
+
   constructor(options: IOptions) {
     super();
     this._editor = options.editor;
@@ -20,53 +32,47 @@ export default class TabnineConnector extends DataConnector<
 
   fetch(
     request: CompletionHandler.IRequest
-  ): Promise<CompletionHandler.IReply> {
-    if (!this._editor) {
-      return Promise.reject("No editor");
-    }
-
-    return autoComplete(this._editor);
+  ): Promise<CompletionHandler.ICompletionItemsReply> {
+    return autoComplete({ editor: this._editor, text: request.text });
   }
 
   private _editor: CodeEditor.IEditor | null;
 }
 
-export async function autoComplete(
-  editor: CodeEditor.IEditor
-): Promise<CompletionHandler.IReply> {
-  // Find the token at the cursor
+export async function autoComplete({
+  editor,
+  text,
+}: IAutoCompleteRequestOptions): Promise<CompletionHandler.ICompletionItemsReply> {
   const position = editor.getCursorPosition();
   const currentOffset = editor.getOffsetAt(position);
+  const currentToken = editor.getTokenForPosition(position);
 
   const beforeStartOffset = Math.max(0, currentOffset - CHAR_LIMIT);
   const afterEndOffset = currentOffset + CHAR_LIMIT;
 
-  const before = editor
-    .getTokens()
-    .filter(({ offset }) => beforeStartOffset <= offset)
-    .map(({ value }) => value)
-    .join("");
-
-  const after = editor
-    .getTokens()
-    .filter(({ offset }) => offset > currentOffset && offset < afterEndOffset)
-    .map(({ value }) => value)
-    .join("");
+  const before = text.slice(beforeStartOffset, currentOffset);
+  const after = text.slice(currentOffset, afterEndOffset);
 
   const response = await postAutocomplete({
     before,
     after,
-    max_num_results: 5,
-    filename: "bilu",
+    max_num_results: MAX_RESULTS,
+    filename: "NO_FILE",
+    region_includes_beginning: currentOffset === 0,
     region_includes_end: true,
-    region_includes_beginning: true,
   });
 
-  debugger;
+  const items: CompletionHandler.ICompletionItems = response.results.map(
+    (response) => ({
+      label: response.new_prefix,
+      type: "tabnine",
+      icon,
+    })
+  );
+
   return {
-    start: currentOffset,
-    end: currentOffset + 10,
-    matches: response.results.map(({ new_prefix }) => new_prefix),
-    metadata: {},
+    start: currentOffset - response.old_prefix.length,
+    end: currentOffset + currentToken.value.length,
+    items,
   };
 }

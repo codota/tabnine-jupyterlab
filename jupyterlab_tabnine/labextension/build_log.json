@@ -129,8 +129,7 @@
           "filename": "remoteEntry.[contenthash].js",
           "exposes": {
             "./index": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js",
-            "./extension": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js",
-            "./style": "/home/amir/Workspace/tabnine-jupyterlab/style/index.js"
+            "./extension": "/home/amir/Workspace/tabnine-jupyterlab/out/src/index.js"
           },
           "shared": {
             "@jupyterlab/application": {

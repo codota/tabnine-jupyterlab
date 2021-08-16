@@ -14,7 +14,6 @@ lab_path = (HERE / name.replace("-", "_") / "labextension")
 # Representative files that should exist after a successful build
 ensured_targets = [
     str(lab_path / "package.json"),
-    str(lab_path / "static/style.js")
 ]
 
 labext_name = "@tabnine/jupyterlab"
@@ -27,7 +26,7 @@ data_files_spec = [
 ]
 
 long_description = (HERE / "README.md").read_text()
-
+    
 # Get the package info from package.json
 pkg_json = json.loads((HERE / "package.json").read_bytes())
 
