@@ -7,13 +7,13 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/codota/jupyterlab-tabnine",
+  "homepage": "https://github.com/codota/tabnine-jupyterlab",
   "bugs": {
-    "url": "https://github.com/jupyterlab/extension-examples/issues"
+    "url": "https://github.com/codota/tabnine-jupyterlab/issues"
   },
   "license": "BSD-3-Clause",
   "author": {
-    "name": "Project Jupyter Contributors",
+    "name": "Tabnine ",
     "email": ""
   },
   "files": [

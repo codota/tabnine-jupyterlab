@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "Tabnine AI Auto Completer For Jupyter Lab",
   "keywords": ["jupyter", "jupyterlab", "jupyterlab-extension"],
-  "homepage": "https://github.com/codota/jupyterlab-tabnine",
+  "homepage": "https://github.com/codota/tabnine-jupyterlab",
   "bugs": {
-    "url": "https://github.com/jupyterlab/extension-examples/issues"
+    "url": "https://github.com/codota/tabnine-jupyterlab/issues"
   },
   "license": "BSD-3-Clause",
   "author": {
-    "name": "Project Jupyter Contributors",
-    "email": ""
+    "name": "Tabnine",
+    "email": "info@tabnine.com"
   },
   "files": [
     "out/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"

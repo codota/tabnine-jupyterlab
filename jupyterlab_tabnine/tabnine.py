@@ -126,7 +126,7 @@ class Tabnine(object):
             [
                 path,
                 "--client",
-                "jupyter",
+                "jupyterlab",
                 "--log-file-path",
                 os.path.join(self._install_dir, "tabnine.log"),
             ],
