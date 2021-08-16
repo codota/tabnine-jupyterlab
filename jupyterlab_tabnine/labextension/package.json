@@ -13,8 +13,8 @@
   },
   "license": "BSD-3-Clause",
   "author": {
-    "name": "Tabnine ",
-    "email": ""
+    "name": "Tabnine",
+    "email": "info@tabnine.com"
   },
   "files": [
     "out/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
