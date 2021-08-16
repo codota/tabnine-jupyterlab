@@ -15,9 +15,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+        
     - name: Setup Node.js environment
-    
-    - uses: actions/setup-node@v2.4.0
+      uses: actions/setup-node@v2.4.0
       with:
         node-version: 14.16.0
     
