@@ -1,11 +1,15 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tabnine AI Auto Completer For Jupyter Lab",
   "keywords": [
     "jupyter",
     "jupyterlab",
-    "jupyterlab-extension"
+    "jupyterlab-extension",
+    "Tabnine",
+    "python",
+    "javascript",
+    "typescript"
   ],
   "homepage": "https://github.com/codota/tabnine-jupyterlab",
   "bugs": {
