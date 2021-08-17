@@ -1,219 +1,234 @@
-# Custom Completer
+[twitter-shield]: https://img.shields.io/twitter/follow/Tabnine_?style=social
+[twitter-url]: https://bit.ly/2WHsEtD
+[github-shield]: https://img.shields.io/github/stars/codota/Tabnine?style=social
+[github-url]: https://bit.ly/36iGtUU
+[youtube-shield]: https://img.shields.io/youtube/views/TKLkXh_c-Gw?style=social
+[youtube-url]: https://bit.ly/36slY7c
 
-> Provide a connector to customize tab completion results in a notebook.
+[![Github Repo][github-shield]][github-url]
+[![Youtube Demo Video][youtube-shield]][youtube-url]
+[![Twitter Follow][twitter-shield]][twitter-url]
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/from-referrer/)
 
-- [Code structure](#code-structure)
-- [Creating a custom connector](#creating-a-custom-connector)
-- [Aggregating connector responses](#aggregating-connector-responses)
-- [Disabling a JupyterLab plugin](#disabling-a-jupyterlab-plugin)
-- [Asynchronous extension initialization](#asynchronous-extension-initialization)
-- [Where to go next](#where-to-go-next)
+# Supercharge Your Development Workflow
 
-![Custom completion](preview.png)
+Tabnine is the AI code completion tool **trusted by millions of developers** to code faster with fewer errors. Whether you are a new dev or a seasoned pro, working solo or part of a team, Tabnine will help push your productivity to new heights while cutting your QA time – all in your favorite IDE.
+<br />
 
-In this example, you will learn how to customize the behavior of JupyterLab notebooks' tab completion.
+## Tabnine - Your AI Assistant
 
-## Code structure
+Whether you call it **IntelliSense, intelliCode, autocomplete, AI-assisted code completion, AI-powered code completion, AI copilot, AI code snippets, code suggestion, code prediction, code hinting**, or **content assist**, you probably already know that it can save you tons of time, easily cutting your keystrokes in half.
 
-The code is split into three parts:
+Powered by sophisticated **machine learning models** trained on billions of lines of trusted **Open Source code** from GitHub, Tabnine is the most advanced **AI-powered code completion** copilot available today. And like GitHub, it is an essential tool for professional developers.
 
-1.  the JupyterLab plugin that activates all the extension components and connects
-    them to the main _JupyterLab_ application via commands,
-2.  a custom `CompletionConnector`, adapted from [jupyterlab/packages/completer/src/connector.ts](https://github.com/jupyterlab/jupyterlab/blob/master/packages/completer/src/connector.ts),
-    that aggregates completion results from three sources: _JupyterLab_'s existing `KernelConnector` and `ContextConnector`, plus...
-3.  `CustomConnector`, a lightweight source of mocked completion results.
+![With and without Tabnine Java](https://github.com/codota/TabNine/raw/master/with-and-without-tabnine-java.gif)
+<br />
 
-The first part is contained in the `index.ts` file, the second is in `connector.ts`, and the third is in `customconnector.ts`.
+## Tabnine’s AI Engine
 
-## Creating a custom DataConnector
+Tabnine delivers three times the AI for better collaboration, better privacy protection, and better code completion.
 
-`src/customconnector.ts` defines a `CustomConnector` to generate mock autocomplete suggestions. Like the `ContextConnector` it is based on, `CustomConnector` extends _JupyterLab_'s abstract [`DataConnector`](https://jupyterlab.readthedocs.io/en/latest/api/classes/statedb.dataconnector.html) class.
+![Tabnine Engine](https://github.com/codota/TabNine/raw/master/resources/tabnine-engine.gif)
+<br />
 
-The only abstract method in `DataConnector` is `fetch`, which must be implemented in your `CustomConnector`.
+## Bigger Team - Better AI
 
-```ts
-// src/customconnector.ts#L28-L43
+**Tools Your Team Can Count On**
+Coding collaboration just got easier. Both **Tabnine Basic** and **Tabnine Pro** now include our growing suite of tools for teams. Name your team, invite team members, and manage your account all from your **My Tabnine** profile.
 
-/**
- * Fetch completion requests.
- *
- * @param request - The completion request text and details.
- * @returns Completion reply
- */
-fetch(
-  request: CompletionHandler.IRequest
-): Promise<CompletionHandler.IReply> {
-  if (!this._editor) {
-    return Promise.reject('No editor');
-  }
-  return new Promise<CompletionHandler.IReply>((resolve) => {
-    resolve(Private.completionHint(this._editor));
-  });
-}
-```
+**Learn & Grow as You Go**
+The more team members you invite and add, the faster Tabnine’s **Team Trained AI**, and **Private Codebase Trained AI** will learn your team’s projects, preferences, and patterns, suggesting even more accurate code completions.
+<br />
 
-This calls a private `completionHint` function, which, like `ContextConnector`'s `contextHint` function, uses the `CodeEditor.IEditor` widget to determine the token to suggest matches for.
+## Privacy & Compliance
 
-```ts
-// src/customconnector.ts#L73-L78
+**Your Code Is Never Shared**
+At Tabnine we know privacy is paramount. All three of Tabnine's AI code completion models can be run locally, on your machine, and NEVER share your code or use it as part of Tabnine’s open-source trained AI.
 
-export function completionHint(
-  editor: CodeEditor.IEditor
-): CompletionHandler.IReply {
-  // Find the token at the cursor
-  const cursor = editor.getCursorPosition();
-  const token = editor.getTokenForPosition(cursor);
-```
+**Your Data is Never Shared**
+Both the Team Trained AI and Private Codebase AI store all your AI training data locally on your machines, helping ensure compliance while providing you and your team with complete control and custody of your data and code.
 
-A list of mock completion tokens is then created to return as `matches` in the `CompletionHandler.IReply` response.
+Find out more about how we keep your code private [here](https://www.tabnine.com/code-privacy)
+<br />
 
-<!-- prettier-ignore-start -->
-```ts
-// src/customconnector.ts#L80-L97
+## All the Languages You Love
 
-// Create a list of matching tokens.
-const tokenList = [
-  { value: token.value + 'Magic', offset: token.offset, type: 'magic' },
-  { value: token.value + 'Science', offset: token.offset, type: 'science' },
-  { value: token.value + 'Neither', offset: token.offset },
-];
+### Including:
 
-// Only choose the ones that have a non-empty type field, which are likely to be of interest.
-const completionList = tokenList.filter((t) => t.type).map((t) => t.value);
-// Remove duplicate completions from the list
-const matches = Array.from(new Set<string>(completionList));
+|     Python     |   Javascript    |   Java   |
+| :------------: | :-------------: | :------: |
+|  extended JS   |    **React**    |   PHP    |
+| **Typescript** |    C Header     |   Bash   |
+|       ML       |      Swift      | **Ruby** |
+|      Perl      |    **Rust**     |   SQL    |
+|    **Vue**     |       F#        |  Scala   |
+|     Julia      |      TOML       |  Shell   |
+|      YMAL      | **C / C++/ C#** |   HTML   |
+|      Lua       |    Markdown     | Haskell  |
+|     **Go**     |   Objective C   | **JSON** |
+|   CSS / SCSS   |   **Angular**   |  Kotlin  |
 
-return {
-  start: token.offset,
-  end: token.offset + token.value.length,
-  matches,
-  metadata: {},
-};
-```
-<!-- prettier-ignore-end -->
+---
 
-## Aggregating connector responses
+### Speed Up Your Development
 
-[_JupyterLab_'s `CompletionConnector`](https://github.com/jupyterlab/jupyterlab/blob/master/packages/completer/src/connector.ts) fetches and merges completion responses from `KernelConnector` and `ContextConnector`. The modified `CompletionConnector` in `src/connector.ts` is more general; given an array of `DataConnectors`, it can fetch and merge completion matches from every connector provided.
+Get quick concise code suggestions you can count on for easy in-flow approval and integration. You’ll never need to memorize syntax, worry about typos, or hunt for snippets again.
+<br />
 
-```ts
-// src/connector.ts#L33-L50
+### Stay in Flow
 
-/**
- * Fetch completion requests.
- *
- * @param request - The completion request text and details.
- * @returns Completion reply
- */
-fetch(
-  request: CompletionHandler.IRequest
-): Promise<CompletionHandler.IReply> {
-  return Promise.all(
-    this._connectors.map((connector) => connector.fetch(request))
-  ).then((replies) => {
-    const definedReplies = replies.filter(
-      (reply): reply is CompletionHandler.IReply => !!reply
-    );
-    return Private.mergeReplies(definedReplies);
-  });
-}
-```
+Tabnine serves up suggestions for code completions right in your IDE, with no distractions and no downtime.
+<br />
 
-## Disabling a JupyterLab plugin
+### Code Discovery
 
-[_JupyterLab_'s completer-extension](https://github.com/jupyterlab/jupyterlab/tree/master/packages/completer-extension) includes a notebooks plugin that registers notebooks for code completion. Your extension will override the notebooks plugin's behavior, so you can [disable notebooks](https://jupyterlab.readthedocs.io/en/stable/extension/extension_dev.html#disabling-other-extensions) in your `.package.json`:
+Tabnine's AI scans and learns from the best open-source coding practices from across the globe, freeing you to focus on problems that haven't already been solved.
+<br />
 
-```json5
-// package.json#L83-L90
+### Ace Your Code Review
 
-"jupyterlab": {
-  "extension": true,
-  "schemaDir": "schema",
-  "outputDir": "jupyterlab_examples_completer/labextension",
-  "disabledExtensions": [
-    "@jupyterlab/completer-extension:notebooks"
-  ]
-},
-```
+Reduce development costs, eliminate unnecessary QA-ing, and deliver final code faster with AI trained on the most trusted open-source permissive license repositories.
 
-## Asynchronous extension initialization
+---
 
-`index.ts` contains the code to initialize this extension. Nearly all of the code in `index.ts` is copied directly from the notebooks plugin.
+## Pick the Plan that Works Best for You
 
-Note that the extension commands you're overriding are unified into one namespace at the top of the file:
+### Tabnine Basic
 
-```ts
-// src/index.ts#L21-L29
+**No Credit Card, No Commitment - Just Code**
+[Get Tabnine](https://www.tabnine.com/install/vscode?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+<br />
 
-namespace CommandIDs {
-  export const invoke = "completer:invoke";
+### Tabnine Pro
 
-  export const invokeNotebook = "completer:invoke-notebook";
+**Pro Tools for Professional Developers**
+[Upgrade to Pro](https://www.tabnine.com/pro?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+<br />
 
-  export const select = "completer:select";
+### Tabnine Free Student Pro Plan
 
-  export const selectNotebook = "completer:select-notebook";
-}
-```
+**Investing In Our Community**
+We know that tuition, books, rent, and food can get crazy expensive, that’s why Tabnine helps support the community and the dev superstars of tomorrow with a 100% free Tabnine Student license with **all our Pro perks** renewable for as long as you are a student.
+[Student? Click here](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 
-`index.ts` imports four connector classes, two from `JupyterLab`:
+---
 
-<!-- prettier-ignore-start -->
-```ts
-// src/index.ts#L6-L10
+## Easy Installation
 
-import {
-  ContextConnector,
-  ICompletionManager,
-  KernelConnector,
-} from '@jupyterlab/completer';
-```
-<!-- prettier-ignore-end -->
+Simply run this command line in you terminal:
 
-and two from this extension:
+`pip install jupyterlab_tabnine`
 
-```ts
-// src/index.ts#L14-L16
+---
 
-import { CompletionConnector } from "./connector";
+### FAQ
 
-import { CustomConnector } from "./customconnector";
-```
+Got a question? We’ve got the answer - Check out our [FAQ](https://www.tabnine.com/faq?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace) page
+<br />
 
-Just like the notebooks plugin, when you update the handler for a notebook call `updateConnector`:
+### Tabnine Support
 
-```ts
-// src/index.ts#L74-L76
+Having some trouble with installation? Something not working the way you hoped? **Tabnine Support** is always happy to help. Feel free to contact us anytime at support@tabnine.com
+<br />
 
-// Update the handler whenever the prompt or session changes
-panel.content.activeCellChanged.connect(updateConnector);
-panel.sessionContext.sessionChanged.connect(updateConnector);
-```
+### Tabnine Hub
 
-which, unlike the notebooks plugin, instantiates `KernelConnector`, `ContextConnector`, and `CustomConnector`, then passes them to your modified `CompletionConnector`:
+A quick click on **_Tabnine_** on your IDE status bar takes you directly to your **_Tabnine Hub_** where you can easily update and manage all your account options and customize your suggestion preferences.
+<br />
 
-<!-- prettier-ignore-start -->
-```ts
-// src/index.ts#L58-L72
+### Usage
 
-const updateConnector = () => {
-  editor = panel.content.activeCell?.editor ?? null;
-  options.session = panel.sessionContext.session;
-  options.editor = editor;
-  handler.editor = editor;
+After installation, navigate to the **_Tabnine Settings_** page (Open **_Settings_** from the Command Palette) and verify that Tabnine is successfully loaded (as shown in these [screenshots](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette)).
 
-  const kernel = new KernelConnector(options);
-  const context = new ContextConnector(options);
-  const custom = new CustomConnector(options);
-  handler.connector = new CompletionConnector([
-    kernel,
-    context,
-    custom,
-  ]);
-};
-```
-<!-- prettier-ignore-end -->
+Tabnine is a textual autocomplete extension. When you type a specific string in your editor, you will be shown the Tabnine completion dialog box with suggestions for completing the code you’ve begun typing.
+<br />
 
-## Where to go next
+### Deep Completion
 
-Create a [server extension](../server-extension) to serve up custom completion matches.
+Deep Tabnine is trained on millions of files from GitHub. During training, Tabnine’s goal is to predict the next token given the tokens that came before. To achieve this goal, Tabnine learns complex behavior, such as type inference in dynamically typed languages.
+
+Deep Tabnine can use subtle clues that are difficult for traditional tools to access. For example, the return type of `app.get_user()` is assumed to be an object with setter methods, while the return type of `app.get_users()` is assumed to be a list.
+
+Deep Tabnine is based on GPT-2, which uses the **_Transformers Network Architecture_**. This architecture was first developed to solve problems in natural language processing. Although modeling code and modeling natural language might appear to be unrelated tasks, modeling code requires understanding English in some unexpected ways.
+
+- Tabnine Indexes your entire project and determines which files to ignore by reading your `.gitignore`
+- Tabnine cuts your number of keystrokes in half and eliminates unnecessary typos
+- Tabnine works right out of the box ensuring frictionless installation and configuration
+- Tabnine offers code completion suggestions in less than 10 milliseconds
+  <br />
+
+---
+
+### Communities
+
+- [Join the Tabnine Discord server](https://discord.gg/5GnbDg5Jmg)
+- [Join the Tabnine community in Slack](https://join.slack.com/t/tabnine-community/shared_invite/zt-mi5n0v6f-4W0Ap4yAUQXS~nVvxwSoJg)
+
+[<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/teams-banner-1.png" width=50%>](https://www.tabnine.com/refer-a-friend?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace")
+
+### **_Recommended by developers everywhere:_**
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-27.png" alt="William Candillon Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-7.png" alt="Imed Boumalek Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-14.png" alt="ramnivas Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-16.png" alt="bob paskar Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-19.png" alt="Nick Radford Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-28.png" alt="Hugues BR Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-32.png" alt="JohnyTheCarrot Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-33.png" alt="Donald E Fredrick Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-36.png" alt="Joshua Kelly Tweet" width="50%">
+
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/twitter-ps-38.png" alt="JDerek Braid Tweet" width="50%">
+
+---
+
+- **Q: Can I install Tabnine on multiple machines?**
+- A: You can use your Tabnine license on as many computers and operating systems as you like. All Tabnine Licenses are per-user, rather than per-machine.
+  <br />
+  <br />
+
+- **Q: Is there a Tabnine Student program?**
+- A: Yes, If you’re a student, you can register for Tabnine Pro for FREE using your school email address. [Get Tabnine Student now](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+  <br />
+  <br />
+
+- **Q: Does Tabnine use a model trained on safe, open-source code for completions?**
+- A: Yes, all Tabnine code completions are based on trusted, open-source code with permissive licenses.
+  <br />
+  <br />
+
+- **Q: Does the Tabnine Private Codebase AI share my code?**
+- A: NEVER! Your code is always kept local and 100% private for you and your team. It’s never used to train the Tabnine Private Codebase AI - That’s the Tabnine Privacy Promise.
+  <br />
+  <br />
+
+- **Q: Do All Three Tabnie AI Models work together?**
+- A: Yes, the three models work in tandem, simultaneously providing unparalleled AI accuracy. Tabnine’s Open-Source Trained AI bases its suggestions on trusted public code with permissive licenses while the Private Codebase AI and Team Trained AI learn from you and your team’s preferences, code selections, and ongoing AI interactions.
+  <br />
+  <br />
+
+- **Q: Can I run Tabnine locally, or do I need to use the Cloud?**
+- A: You can run Tabnine locally or on the cloud, you choose! Regardless, your code is never shared or used as part of Tabnine’s Open-Source Trained AI - That’s the Tabnine Privacy Promise.
+  <br />
+  <br />
+
+- **Q: Does Tabnine work in multiple IDEs?**
+- A: Yes, Tabnine works with all your favorite IDEs, and in the most popular languages, libraries, and frameworks. See the full list of IDEs and languages [HERE](https://www.tabnine.com/install?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+  <br />
+  <br />
+
+- **Q: What is the difference between Tabnine Basic and Tabnine Pro?**
+- A: Tabnine Pro uses our advanced AI Model trained on more than a billion lines of open-source code and works with teams of up to 30. Tabnine Basic uses a smaller AI model and works with teams of three or less.
+  <br />
+  <br />
+
+- **Q: What type of online payments are accepted?**
+- A: Tabnine accepts all major credit cards and debit cards, including Visa, Mastercard, American Express, and more. Tabnine also accepts PayPal, Google Pay, Apple Pay, as well as additional payment options that may be available in your specific location (such as Alipay).
