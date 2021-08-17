@@ -46,7 +46,7 @@ setup_args = dict(
     include_package_data=True,
     python_requires=">=3.6",
     platforms="Linux, Mac OS X, Windows",
-    keywords=["Jupyter", "JupyterLab", "JupyterLab3"],
+    keywords=["Jupyter", "JupyterLab", "JupyterLab3", "Tabnine", "python"],
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
