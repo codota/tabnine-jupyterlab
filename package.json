@@ -1,6 +1,6 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tabnine AI Auto Completer For Jupyter Lab",
   "keywords": [
     "jupyter",

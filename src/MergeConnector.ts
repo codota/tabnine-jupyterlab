@@ -60,7 +60,7 @@ export function mergeReplies(
   replyWithMatches.matches.forEach((label, index) =>
     items.push({
       label,
-      type: replyWithMatchesMetaData[index].type,
+      type: replyWithMatchesMetaData ? replyWithMatchesMetaData[index].type :  "",
     })
   );
 
