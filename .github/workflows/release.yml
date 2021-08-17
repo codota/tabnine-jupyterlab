@@ -1,4 +1,4 @@
-name: CI
+name: Release
 
 on:
   workflow_dispatch:
@@ -21,15 +21,18 @@ jobs:
       with:
         node-version: 14.16.0
     
-    - name: Install Twine
+    - name: Install Twine & Build
       run: |
-       pip install twine
+       pip install --upgrade twine build 
        
-    - name: Install
-      run: |
-       pip install .
-     
     - name: Build
       run: |
-        python setup.py sdist bdist_wheel
+        python -m build
+        
+    - name: Upload
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }} 
+      run: |
+        python -m twine upload dist/*
 
