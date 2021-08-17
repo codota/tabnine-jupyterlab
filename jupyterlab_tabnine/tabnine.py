@@ -6,6 +6,7 @@ import subprocess
 import threading
 from urllib.request import urlopen
 from urllib.error import HTTPError
+from ._version import __version__
 
 if platform.system() == "Windows":
     try:
@@ -129,6 +130,9 @@ class Tabnine(object):
                 "jupyterlab",
                 "--log-file-path",
                 os.path.join(self._install_dir, "tabnine.log"),
+                "--client-metadata",
+                "pluginVersion={}".format( __version__),
+
             ],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
