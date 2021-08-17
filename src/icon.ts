@@ -13,9 +13,7 @@ const tabnineLogo = `
 </linearGradient>
 </defs>
 </svg>
-`
-;
-
+`;
 const icon = new LabIcon({
   name: "tabnine:logo",
   svgstr: tabnineLogo,

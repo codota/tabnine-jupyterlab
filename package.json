@@ -1,6 +1,6 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tabnine AI Auto Completer For Jupyter Lab",
   "keywords": [
     "jupyter",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@jupyterlab/application": "^3.1.0",
     "@jupyterlab/codeeditor": "^3.1.0",
+    "@jupyterlab/codemirror": "^3.1.6",
     "@jupyterlab/completer": "^3.1.0",
     "@jupyterlab/launcher": "^3.1.0",
     "@jupyterlab/mainmenu": "^3.1.0",
@@ -90,5 +91,8 @@
       "@jupyterlab/completer-extension:notebooks",
       "@jupyterlab/completer-extension:files"
     ]
+  },
+  "peerDependencies": {
+    "codemirror": "~5.61.0"
   }
 }

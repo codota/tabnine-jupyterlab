@@ -23,6 +23,10 @@ import TabnineConnector from "./TabnineConnector";
 
 import { COMPLETION_CHARS } from "./consts";
 
+import addKeyupHandler, {
+  IEditorWithCodeMirrorEditor,
+} from "./editor/addKeyupHandler";
+
 namespace CommandIDs {
   export const invoke = "completer:invoke";
 
@@ -73,7 +77,8 @@ const notebooks: JupyterFrontEndPlugin<void> = {
           options.editor = editor;
           handler.editor = editor;
 
-          panel.content.activeCell?.editor.addKeydownHandler(
+          addKeyupHandler(
+            editor as unknown as IEditorWithCodeMirrorEditor,
             (editor, event) => {
               if (COMPLETION_CHARS.includes(event.key))
                 app.commands.execute(CommandIDs.invoke, { id: panel.id });
@@ -146,11 +151,14 @@ const files: JupyterFrontEndPlugin<void> = {
         parent: widget,
       });
 
-      editor.addKeydownHandler((editor, event) => {
-        if (COMPLETION_CHARS.includes(event.key))
-          app.commands.execute(CommandIDs.invoke, { id: widget.id });
-        return false;
-      });
+      addKeyupHandler(
+        editor as unknown as IEditorWithCodeMirrorEditor,
+        (editor, event) => {
+          if (COMPLETION_CHARS.includes(event.key))
+            app.commands.execute(CommandIDs.invoke, { id: widget.id });
+          return false;
+        }
+      );
 
       const onRunningChanged = (
         sender: Session.IManager,
