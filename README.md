@@ -96,20 +96,20 @@ Reduce development costs, eliminate unnecessary QA-ing, and deliver final code f
 ### Tabnine Basic
 
 **No Credit Card, No Commitment - Just Code**
-[Get Tabnine](https://www.tabnine.com/install/vscode?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace)
+[Get Tabnine](https://www.tabnine.com/install/vscode?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 <br />
 
 ### Tabnine Pro
 
 **Pro Tools for Professional Developers**
-[Upgrade to Pro](https://www.tabnine.com/pro?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace)
+[Upgrade to Pro](https://www.tabnine.com/pro?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 <br />
 
 ### Tabnine Free Student Pro Plan
 
 **Investing In Our Community**
 We know that tuition, books, rent, and food can get crazy expensive, that’s why Tabnine helps support the community and the dev superstars of tomorrow with a 100% free Tabnine Student license with **all our Pro perks** renewable for as long as you are a student.
-[Student? Click here](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace)
+[Student? Click here](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 
 ---
 
@@ -123,7 +123,7 @@ Simply run this command line in you terminal:
 
 ### FAQ
 
-Got a question? We’ve got the answer - Check out our [FAQ](https://www.tabnine.com/faq?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace) page
+Got a question? We’ve got the answer - Check out our [FAQ](https://www.tabnine.com/faq?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace) page
 <br />
 
 ### Tabnine Support
@@ -196,7 +196,7 @@ Deep Tabnine is based on GPT-2, which uses the **_Transformers Network Architect
   <br />
 
 - **Q: Is there a Tabnine Student program?**
-- A: Yes, If you’re a student, you can register for Tabnine Pro for FREE using your school email address. [Get Tabnine Student now](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace)
+- A: Yes, If you’re a student, you can register for Tabnine Pro for FREE using your school email address. [Get Tabnine Student now](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
   <br />
   <br />
 
@@ -221,7 +221,7 @@ Deep Tabnine is based on GPT-2, which uses the **_Transformers Network Architect
   <br />
 
 - **Q: Does Tabnine work in multiple IDEs?**
-- A: Yes, Tabnine works with all your favorite IDEs, and in the most popular languages, libraries, and frameworks. See the full list of IDEs and languages [HERE](https://www.tabnine.com/install?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=vscode_marketplace)
+- A: Yes, Tabnine works with all your favorite IDEs, and in the most popular languages, libraries, and frameworks. See the full list of IDEs and languages [HERE](https://www.tabnine.com/install?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
   <br />
   <br />
 
