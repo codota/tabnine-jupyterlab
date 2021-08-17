@@ -1,7 +1,9 @@
 *.bundle.*
+binaries/
 out/
 node_modules/
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
 *.map
+__pycache__

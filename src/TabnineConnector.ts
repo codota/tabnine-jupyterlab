@@ -3,15 +3,18 @@ import { CompletionHandler } from "@jupyterlab/completer";
 import { CHAR_LIMIT } from "./consts";
 import postAutocomplete from "./binary/postAutocomplete";
 import { DataConnector } from "@jupyterlab/statedb";
+import { Session } from "@jupyterlab/services";
 import icon from "./icon";
 import { MAX_RESULTS } from "./consts";
 
 type IOptions = {
   editor: CodeEditor.IEditor | null;
+  session?: Session.ISessionConnection;
 };
 
 type IAutoCompleteRequestOptions = {
   editor: CodeEditor.IEditor;
+  session?: Session.ISessionConnection;
   text: string;
 };
 
@@ -24,16 +27,22 @@ export default class TabnineConnector
   implements CompletionHandler.ICompletionItemsConnector
 {
   responseType = "ICompletionItemsReply" as const; // TODO what's this?
+  _session: Session.ISessionConnection;
 
   constructor(options: IOptions) {
     super();
     this._editor = options.editor;
+    this._session = options.session;
   }
 
   fetch(
     request: CompletionHandler.IRequest
   ): Promise<CompletionHandler.ICompletionItemsReply> {
-    return autoComplete({ editor: this._editor, text: request.text });
+    return autoComplete({
+      editor: this._editor,
+      text: request.text,
+      session: this._session,
+    });
   }
 
   private _editor: CodeEditor.IEditor | null;
@@ -42,6 +51,7 @@ export default class TabnineConnector
 export async function autoComplete({
   editor,
   text,
+  session,
 }: IAutoCompleteRequestOptions): Promise<CompletionHandler.ICompletionItemsReply> {
   const position = editor.getCursorPosition();
   const currentOffset = editor.getOffsetAt(position);
@@ -57,7 +67,7 @@ export async function autoComplete({
     before,
     after,
     max_num_results: MAX_RESULTS,
-    filename: "NO_FILE",
+    filename: session?.path,
     region_includes_beginning: currentOffset === 0,
     region_includes_end: true,
   });

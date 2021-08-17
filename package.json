@@ -1,8 +1,12 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Tabnine AI Auto Completer For Jupyter Lab",
-  "keywords": ["jupyter", "jupyterlab", "jupyterlab-extension"],
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
   "homepage": "https://github.com/codota/tabnine-jupyterlab",
   "bugs": {
     "url": "https://github.com/codota/tabnine-jupyterlab/issues"
@@ -12,14 +16,11 @@
     "name": "Tabnine",
     "email": "info@tabnine.com"
   },
-  "files": [
-    "out/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
-  ],
   "main": "out/src/index.js",
   "types": "out/src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jupyterlab/extension-examples.git"
+    "url": "git@github.com:codota/tabnine-jupyterlab.git"
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",
@@ -58,6 +59,7 @@
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
+    "@jupyterlab/fileeditor": "^3.1.6",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.14.0",
@@ -73,7 +75,9 @@
   "jupyterlab": {
     "discovery": {
       "server": {
-        "managers": ["pip"],
+        "managers": [
+          "pip"
+        ],
         "base": {
           "name": "jupyterlab_tabnine"
         }
@@ -82,6 +86,9 @@
     "extension": true,
     "schemaDir": "schema",
     "outputDir": "jupyterlab_tabnine/labextension",
-    "disabledExtensions": ["@jupyterlab/completer-extension:notebooks"]
+    "disabledExtensions": [
+      "@jupyterlab/completer-extension:notebooks",
+      "@jupyterlab/completer-extension:files"
+    ]
   }
 }
