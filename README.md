@@ -21,14 +21,14 @@ Whether you call it **IntelliSense, intelliCode, autocomplete, AI-assisted code 
 
 Powered by sophisticated **machine learning models** trained on billions of lines of trusted **Open Source code** from GitHub, Tabnine is the most advanced **AI-powered code completion** copilot available today. And like GitHub, it is an essential tool for professional developers.
 
-![With and without Tabnine Java](https://github.com/codota/TabNine/raw/master/with-and-without-tabnine-java.gif)
+<img src="https://github.com/codota/TabNine/raw/master/with-and-without-tabnine-java.gif" width="75%" alt="Tabnine for Jupyterlab">
 <br />
 
 ## Tabnine’s AI Engine
 
 Tabnine delivers three times the AI for better collaboration, better privacy protection, and better code completion.
 
-![Tabnine Engine](https://github.com/codota/TabNine/raw/master/resources/tabnine-engine.gif)
+<img src="https://github.com/codota/TabNine/raw/master/resources/tabnine-engine.gif" width="75%" alt="Tabnine Engine">
 <br />
 
 ## Bigger Team - Better AI
@@ -117,7 +117,7 @@ We know that tuition, books, rent, and food can get crazy expensive, that’s wh
 
 Simply run this command line in you terminal:
 
-`pip install jupyterlab_tabnine`
+`pip install --upgrade jupyterlab_tabnine`
 
 ---
 
