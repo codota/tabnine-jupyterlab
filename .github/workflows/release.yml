@@ -32,7 +32,7 @@ jobs:
     - name: Upload
       env:
         TWINE_USERNAME: amirbilu
-        TWINE_PASSWORD: ${{ github.secrets.TWINE_PASSWORD }} 
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }} 
       run: |
         python -m twine upload dist/*
 
