@@ -1,6 +1,6 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "JupyterLab client for Tabnine",
   "keywords": [
     "jupyter",

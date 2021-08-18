@@ -55,7 +55,6 @@ export async function autoComplete({
 }: IAutoCompleteRequestOptions): Promise<CompletionHandler.ICompletionItemsReply> {
   const position = editor.getCursorPosition();
   const currentOffset = editor.getOffsetAt(position);
-  const currentToken = editor.getTokenForPosition(position);
 
   const beforeStartOffset = Math.max(0, currentOffset - CHAR_LIMIT);
   const afterEndOffset = currentOffset + CHAR_LIMIT;
@@ -82,7 +81,7 @@ export async function autoComplete({
 
   return {
     start: currentOffset - response.old_prefix.length,
-    end: currentOffset + currentToken.value.length,
+    end: currentOffset,
     items,
   };
 }

@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 14.16.0
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install Twine, Build & JupyterLab
         run: |
@@ -35,7 +35,7 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         run: |
           python -m twine upload dist/*
-          
+
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
