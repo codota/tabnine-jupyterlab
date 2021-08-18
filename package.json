@@ -86,6 +86,7 @@
     "@jupyterlab/notebook": "^3.1.0",
     "@jupyterlab/outputarea": "^3.1.0",
     "@jupyterlab/statedb": "^3.1.0",
+    "@jupyterlab/statusbar": "^3.1.6",
     "@jupyterlab/translation": "^3.1.0",
     "@lumino/algorithm": "^1.6.0",
     "@lumino/coreutils": "^1.8.0",

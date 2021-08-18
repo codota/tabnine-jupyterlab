@@ -6,3 +6,5 @@ export const COMPLETION_CHARS =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ(=[%/{+#.,\\<+-|&*%=$#@!";
 
 export const MAX_RESULTS = 5;
+
+export const TABNINE_LOGO = "⌬";
