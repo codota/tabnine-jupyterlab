@@ -28,9 +28,17 @@ jobs:
         run: |
           python -m build
 
-      - name: Upload
+      - name: Publish to Pypi
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         run: |
           python -m twine upload dist/*
+      
+            - name: Publish to Pypi
+            
+      - name: Publish to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish --access public
