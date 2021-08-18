@@ -96,7 +96,7 @@ Reduce development costs, eliminate unnecessary QA-ing, and deliver final code f
 ### Tabnine Basic
 
 **No Credit Card, No Commitment - Just Code**
-[Get Tabnine](https://www.tabnine.com/install/vscode?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+[Get Tabnine](https://www.tabnine.com/install?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 <br />
 
 ### Tabnine Pro
@@ -137,8 +137,6 @@ A quick click on **_Tabnine_** on your IDE status bar takes you directly to your
 <br />
 
 ### Usage
-
-After installation, navigate to the **_Tabnine Settings_** page (Open **_Settings_** from the Command Palette) and verify that Tabnine is successfully loaded (as shown in these [screenshots](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette)).
 
 Tabnine is a textual autocomplete extension. When you type a specific string in your editor, you will be shown the Tabnine completion dialog box with suggestions for completing the code you’ve begun typing.
 <br />
