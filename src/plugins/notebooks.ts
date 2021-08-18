@@ -19,6 +19,8 @@ import MergeConnector from "../connectors/MergeConnector";
 
 import TabnineConnector from "../connectors/TabnineConnector";
 
+import { dummyFilenameByCellType } from "../utils/notebook.utils";
+
 const notebooks: JupyterFrontEndPlugin<void> = {
   id: "@tabnine/jupyterlab:notebook",
   autoStart: true,
@@ -35,7 +37,11 @@ const notebooks: JupyterFrontEndPlugin<void> = {
         let editor = panel.content.activeCell?.editor ?? null;
         const { session } = panel.sessionContext;
 
-        const options = { session, editor };
+        const options = {
+          session,
+          editor,
+          path: dummyFilenameByCellType(panel.content.activeCell),
+        };
         const connector = new CompletionConnector({ session, editor });
 
         const handler = completionManager.register({
@@ -47,7 +53,7 @@ const notebooks: JupyterFrontEndPlugin<void> = {
         const updateConnector = () => {
           editor = panel.content.activeCell?.editor ?? null;
           options.session = panel.sessionContext.session;
-          // TODO consider chainging session.path to "test.py"
+          options.path = dummyFilenameByCellType(panel.content.activeCell);
           options.editor = editor;
           handler.editor = editor;
 

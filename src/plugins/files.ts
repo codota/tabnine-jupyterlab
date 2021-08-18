@@ -45,7 +45,10 @@ const files: JupyterFrontEndPlugin<void> = {
       const editor = widget.content.editor;
 
       const connector = new ContextConnector({ editor });
-      const tabnine = new TabnineConnector({ editor });
+      const tabnine = new TabnineConnector({
+        editor,
+        path: widget.context.path,
+      });
       const contextConnector = new MergeConnector(tabnine, connector);
 
       const handler = manager.register({
@@ -79,7 +82,7 @@ const files: JupyterFrontEndPlugin<void> = {
             oldSession.dispose();
           }
           const session = sessions.connectTo({ model });
-          const options = { editor, session };
+          const options = { editor, session, path: widget.context.path };
 
           const tabnine = new TabnineConnector(options);
           const connector = new CompletionConnector(options);
