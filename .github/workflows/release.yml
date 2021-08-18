@@ -28,7 +28,7 @@ jobs:
         run: |
           python -m build
 
-      - name: Publish to Pypi
+      - name: Publish to pypi
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
