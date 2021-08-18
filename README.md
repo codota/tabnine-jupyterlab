@@ -115,7 +115,7 @@ We know that tuition, books, rent, and food can get crazy expensive, that’s wh
 
 ## Easy Installation
 
-Simply run this command line in you terminal:
+Simply run this command line in your terminal:
 
 `pip install --upgrade jupyterlab_tabnine`
 
