@@ -11,21 +11,28 @@ from ._version import __version__
 if platform.system() == "Windows":
     try:
         from colorama import init
+
         init(convert=True)
     except ImportError:
         try:
             import pip
-            pip.main(['install', '--user', 'colorama'])
+
+            pip.main(["install", "--user", "colorama"])
             from colorama import init
+
             init(convert=True)
         except Exception:
-            logger = logging.getLogger('ImportError')
-            logger.error('Install colorama failed. Install it manually to enjoy colourful log.')
+            logger = logging.getLogger("ImportError")
+            logger.error(
+                "Install colorama failed. Install it manually to enjoy colourful log."
+            )
 
 
-logging.basicConfig(level=logging.INFO,
-                    format='\x1b[1m\x1b[33m[%(levelname)s %(asctime)s.%(msecs)03d %(name)s]\x1b[0m: %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(
+    level=logging.INFO,
+    format="\x1b[1m\x1b[33m[%(levelname)s %(asctime)s.%(msecs)03d %(name)s]\x1b[0m: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 _TABNINE_UPDATE_VERSION_URL = "https://update.tabnine.com/version"
 _TABNINE_DOWNLOAD_URL_FORMAT = "https://update.tabnine.com/{}"
@@ -34,6 +41,7 @@ _SYSTEM_MAPPING = {
     "Linux": "unknown-linux-gnu",
     "Windows": "pc-windows-gnu",
 }
+
 
 class TabnineDownloader(threading.Thread):
     def __init__(self, download_url, output_path, tabnine):
@@ -46,16 +54,15 @@ class TabnineDownloader(threading.Thread):
     def run(self):
         output_dir = os.path.dirname(self.output_path)
         try:
-            self.logger.info('Begin to download Tabnine Binary from %s',
-                             self.download_url)
+            self.logger.info(
+                "Begin to download Tabnine Binary from %s", self.download_url
+            )
             if not os.path.isdir(output_dir):
                 os.makedirs(output_dir)
-            with urlopen(self.download_url) as res, \
-                open(self.output_path, 'wb') as out:
+            with urlopen(self.download_url) as res, open(self.output_path, "wb") as out:
                 out.write(res.read())
             os.chmod(self.output_path, 0o755)
-            self.logger.info('Finish download Tabnine Binary to %s',
-                             self.output_path)
+            self.logger.info("Finish download Tabnine Binary to %s", self.output_path)
             sem_complete_on(self.tabnine)
         except Exception as e:
             self.logger.error("Download failed, error: %s", e)
@@ -63,29 +70,32 @@ class TabnineDownloader(threading.Thread):
 
 def sem_complete_on(tabnine):
     SEM_ON_REQ_DATA = {
-        "version":"1.0.7",
-        "request":{
-            "Autocomplete":{
-                "filename":"test.py",
-                "before":"Tabnine::sem",
-                "after":"",
-                "region_includes_beginning":True,
-                "region_includes_end":True,
-                "max_num_results":10
+        "version": "1.0.7",
+        "request": {
+            "Autocomplete": {
+                "filename": "test.py",
+                "before": "Tabnine::sem",
+                "after": "",
+                "region_includes_beginning": True,
+                "region_includes_end": True,
+                "max_num_results": 10,
             }
-        }
+        },
     }
     res = tabnine.request(json.dumps(SEM_ON_REQ_DATA))
     try:
-        tabnine.logger.info(f' {res["results"][0]["new_prefix"]}{res["results"][0]["new_suffix"]}')
+        tabnine.logger.info(
+            f' {res["results"][0]["new_prefix"]}{res["results"][0]["new_suffix"]}'
+        )
     except Exception:
-        tabnine.logger.warning(' wrong response of turning on semantic completion')
+        tabnine.logger.warning(" wrong response of turning on semantic completion")
 
 
 class Tabnine(object):
     """
     Tabnine python wrapper
     """
+
     def __init__(self):
         self.name = "tabnine"
         self._proc = None
@@ -131,8 +141,7 @@ class Tabnine(object):
                 "--log-file-path",
                 os.path.join(self._install_dir, "tabnine.log"),
                 "--client-metadata",
-                "pluginVersion={}".format( __version__),
-
+                "pluginVersion={}".format(__version__),
             ],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
@@ -156,7 +165,7 @@ class Tabnine(object):
                 os.chmod(tabnine_path, 0o755)
                 self.logger.info(
                     "Tabnine binary already exists in %s ignore downloading",
-                    tabnine_path
+                    tabnine_path,
                 )
                 sem_complete_on(self)
                 return

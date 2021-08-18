@@ -9,13 +9,12 @@ from .tabnine import Tabnine
 
 
 class TabnineHandler(APIHandler):
-
     def initialize(self, tabnine):
-       self.tabnine = tabnine
+        self.tabnine = tabnine
 
     @tornado.web.authenticated
     def post(self):
-        request = self.request.body.decode('utf-8')
+        request = self.request.body.decode("utf-8")
         response = self.tabnine.request(request)
         self.finish(json.dumps(response))
 
