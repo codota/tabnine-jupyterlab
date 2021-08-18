@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 14.16.0
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Twine, Build & JupyterLab
         run: |
@@ -39,4 +40,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm publish --access public
+          yarn publish --access public
