@@ -21,7 +21,7 @@ Whether you call it **IntelliSense, intelliCode, autocomplete, AI-assisted code 
 
 Powered by sophisticated **machine learning models** trained on billions of lines of trusted **Open Source code** from GitHub, Tabnine is the most advanced **AI-powered code completion** copilot available today. And like GitHub, it is an essential tool for professional developers.
 
-<img src="assets/with-and-without-tabnine-light.gif" width="75%" alt="Tabnine for Jupyterlab">
+<img src="https://raw.githubusercontent.com/codota/tabnine-vscode/master/assets/with-and-without-tabnine-light.gif" width="75%" alt="Tabnine for Jupyterlab">
 <br />
 
 ## Tabnine’s AI Engine
