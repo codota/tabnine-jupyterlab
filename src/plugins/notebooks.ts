@@ -3,10 +3,7 @@ import {
   JupyterFrontEndPlugin,
 } from "@jupyterlab/application";
 
-import {
-  ICompletionManager,
-  CompletionConnector,
-} from "@jupyterlab/completer";
+import { ICompletionManager, CompletionConnector } from "@jupyterlab/completer";
 
 import { INotebookTracker, NotebookPanel } from "@jupyterlab/notebook";
 
@@ -21,8 +18,6 @@ import * as CommandIDs from "../commands";
 import MergeConnector from "../connectors/MergeConnector";
 
 import TabnineConnector from "../connectors/TabnineConnector";
-
-
 
 const notebooks: JupyterFrontEndPlugin<void> = {
   id: "@tabnine/jupyterlab:notebook",
@@ -102,6 +97,5 @@ const notebooks: JupyterFrontEndPlugin<void> = {
     });
   },
 };
-
 
 export default notebooks;

@@ -1,6 +1,4 @@
-import {
-  JupyterFrontEndPlugin,
-} from "@jupyterlab/application";
+import { JupyterFrontEndPlugin } from "@jupyterlab/application";
 
 import notebooks from "./plugins/notebooks";
 import files from "./plugins/files";

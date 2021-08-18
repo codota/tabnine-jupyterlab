@@ -51,8 +51,6 @@ export function mergeReplies(
   const { start } = replyWithItems;
   const { end } = replyWithItems;
   const items: CompletionHandler.ICompletionItem[] = [];
-  debugger;
-
   replyWithItems.items.forEach((item) => items.push(item));
 
   const replyWithMatchesMetaData = replyWithMatches.metadata
@@ -61,7 +59,9 @@ export function mergeReplies(
   replyWithMatches.matches.forEach((label, index) =>
     items.push({
       label,
-      type: replyWithMatchesMetaData ? replyWithMatchesMetaData[index].type :  "",
+      type: replyWithMatchesMetaData
+        ? replyWithMatchesMetaData[index].type
+        : "",
     })
   );
 

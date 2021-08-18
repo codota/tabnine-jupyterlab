@@ -53,7 +53,6 @@ export async function autoComplete({
   text,
   session,
 }: IAutoCompleteRequestOptions): Promise<CompletionHandler.ICompletionItemsReply> {
-  debugger;
   const position = editor.getCursorPosition();
   const currentOffset = editor.getOffsetAt(position);
   const currentToken = editor.getTokenForPosition(position);

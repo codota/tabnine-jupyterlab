@@ -57,7 +57,6 @@ const files: JupyterFrontEndPlugin<void> = {
       addKeyupHandler(
         editor as unknown as IEditorWithCodeMirrorEditor,
         (editor, event) => {
-          debugger;
           if (COMPLETION_CHARS.includes(event.key))
             app.commands.execute(CommandIDs.invoke, { id: widget.id });
           return false;

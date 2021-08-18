@@ -1,4 +1,4 @@
-// based on https://github.com/jupyterlab/jupyterlab/blob/bac24a158a6ba887996edac12796da9c2009c0f9/packages/completer-extension/src/index.ts#L30 
+// based on https://github.com/jupyterlab/jupyterlab/blob/bac24a158a6ba887996edac12796da9c2009c0f9/packages/completer-extension/src/index.ts#L30
 
 export const invoke = "completer:invoke";
 

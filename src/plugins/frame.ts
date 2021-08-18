@@ -7,7 +7,6 @@ import { IStatusBar } from "@jupyterlab/statusbar";
 
 import registerStatusBarWidget from "../statusBar/registerStatusBarWidget";
 
-
 const frame: JupyterFrontEndPlugin<void> = {
   id: "@tabnine/jupyterlab:frame",
   autoStart: true,
