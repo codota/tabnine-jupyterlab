@@ -8,3 +8,5 @@ export const COMPLETION_CHARS =
 export const MAX_RESULTS = 5;
 
 export const TABNINE_LOGO = "⌬";
+
+export const POLL_STATE_INTERVAL = 10_000;
