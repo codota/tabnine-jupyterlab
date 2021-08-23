@@ -187,9 +187,18 @@ def get_tabnine_version():
         return None
 
 
+arch_translations = {
+    "arm64": "aarch64",
+    "AMD64": "x86_64",
+}
+
+
 def get_distribution_name():
     sysinfo = platform.uname()
-    sys_architecture = "aarch64" if sysinfo.machine == "arm64" else sysinfo.machine
+    sys_architecture = sysinfo.machine
+
+    if sys_architecture in arch_translations:
+        sys_architecture = arch_translations[sys_architecture]
 
     if sysinfo.system == "Windows":
         sys_platform = "pc-windows-gnu"
