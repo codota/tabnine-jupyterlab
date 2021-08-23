@@ -1,6 +1,6 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "JupyterLab client for Tabnine",
   "keywords": [
     "jupyter",
@@ -91,11 +91,13 @@
     "@lumino/algorithm": "^1.6.0",
     "@lumino/coreutils": "^1.8.0",
     "@lumino/datagrid": "^0.27.0",
-    "@lumino/disposable": "^1.7.0"
+    "@lumino/disposable": "^1.7.0",
+    "semver": "^7.3.5"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
     "@jupyterlab/fileeditor": "^3.1.6",
+    "@types/semver": "^7.3.8",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.14.0",

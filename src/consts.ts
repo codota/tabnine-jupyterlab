@@ -45,3 +45,6 @@ export const TABNINE_LOGO_PRO_SVG = `<svg width="122" height="16" viewBox="0 0 1
 </linearGradient>
 </defs>
 </svg>`;
+
+export const PYPI_TABNINE_JUPYTERLAB_PATH =
+  "https://pypi.org/pypi/jupyterlab-tabnine/json";
