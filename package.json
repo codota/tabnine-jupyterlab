@@ -1,6 +1,6 @@
 {
   "name": "@tabnine/jupyterlab",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "JupyterLab client for Tabnine",
   "keywords": [
     "jupyter",
@@ -77,17 +77,19 @@
     "watch:src": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.1.0",
-    "@jupyterlab/codeeditor": "^3.1.0",
+    "@jupyterlab/application": "^3.1.6",
+    "@jupyterlab/apputils": "3.1.6",
+    "@jupyterlab/codeeditor": "^3.1.6",
     "@jupyterlab/codemirror": "^3.1.6",
-    "@jupyterlab/completer": "^3.1.0",
-    "@jupyterlab/launcher": "^3.1.0",
-    "@jupyterlab/mainmenu": "^3.1.0",
-    "@jupyterlab/notebook": "^3.1.0",
-    "@jupyterlab/outputarea": "^3.1.0",
-    "@jupyterlab/statedb": "^3.1.0",
+    "@jupyterlab/completer": "^3.1.6",
+    "@jupyterlab/launcher": "^3.1.6",
+    "@jupyterlab/mainmenu": "^3.1.6",
+    "@jupyterlab/notebook": "^3.1.6",
+    "@jupyterlab/outputarea": "^3.1.6",
+    "@jupyterlab/statedb": "^3.1.6",
     "@jupyterlab/statusbar": "^3.1.6",
-    "@jupyterlab/translation": "^3.1.0",
+    "@jupyterlab/translation": "^3.1.6",
+    "@jupyterlab/ui-components": "3.1.6",
     "@lumino/algorithm": "^1.6.0",
     "@lumino/coreutils": "^1.8.0",
     "@lumino/datagrid": "^0.27.0",
@@ -95,7 +97,7 @@
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.1.0",
+    "@jupyterlab/builder": "^3.1.6",
     "@jupyterlab/fileeditor": "^3.1.6",
     "@types/semver": "^7.3.8",
     "@typescript-eslint/eslint-plugin": "^4.8.1",

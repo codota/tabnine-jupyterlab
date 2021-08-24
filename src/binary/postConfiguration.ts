@@ -1,7 +1,7 @@
 import postBinary from "./postBinary";
 
 export type ConfigurationResult = {
-  url: string;
+  message: string;
 };
 
 export type ConfigurationParams = {

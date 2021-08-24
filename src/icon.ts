@@ -13,7 +13,7 @@ export const iconSvgStr = `
 `;
 
 const icon = new LabIcon({
-  name: "tabnine:logo",
+  name: "@tabnine/jupyterlab:logo",
   svgstr: iconSvgStr,
 });
 

@@ -14,7 +14,7 @@ const frame: JupyterFrontEndPlugin<void> = {
   requires: [IStatusBar],
   activate: async (app: JupyterFrontEnd, statusBar: IStatusBar) => {
     registerUpdateWidget(statusBar);
-    registerHubWidget(statusBar);
+    registerHubWidget(statusBar, app);
   },
 };
 
