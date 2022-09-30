@@ -105,12 +105,6 @@ Reduce development costs, eliminate unnecessary QA-ing, and deliver final code f
 [Upgrade to Pro](https://www.tabnine.com/pro?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
 <br />
 
-### Tabnine Free Student Pro Plan
-
-**Investing In Our Community**
-We know that tuition, books, rent, and food can get crazy expensive, that’s why Tabnine helps support the community and the dev superstars of tomorrow with a 100% free Tabnine Student license with **all our Pro perks** renewable for as long as you are a student.
-[Student? Click here](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
-
 ---
 
 ## Easy Installation
@@ -194,7 +188,7 @@ Deep Tabnine is based on GPT-2, which uses the **_Transformers Network Architect
   <br />
 
 - **Q: Is there a Tabnine Student program?**
-- A: Yes, If you’re a student, you can register for Tabnine Pro for FREE using your school email address. [Get Tabnine Student now](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+- A: No. [See all Tabnine pricings](https://www.tabnine.com/pricing?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
   <br />
   <br />
 
