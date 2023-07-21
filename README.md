@@ -107,9 +107,9 @@ Reduce development costs, eliminate unnecessary QA-ing, and deliver final code f
 
 ### Tabnine Free Student Pro Plan
 
-**Investing In Our Community**
-We know that tuition, books, rent, and food can get crazy expensive, that’s why Tabnine helps support the community and the dev superstars of tomorrow with a 100% free Tabnine Student license with **all our Pro perks** renewable for as long as you are a student.
-[Student? Click here](https://www.tabnine.com/students?utm_source=ide_marketplace&utm_medium=organic&utm_campaign=jupyter_lab_marketplace)
+Tabnine does not have a student program.
+
+However, you can keep using Tabnine's basic plan, and if we ever bring the student program back, you'll be notified in our social media accounts. Please follow us on Facebook, Linkedin, and Twitter for any updates.  
 
 ---
 
